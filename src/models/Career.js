@@ -15,8 +15,12 @@ const careerSchema = new Schema({
     salary: {
         type: Number,
     },
-    semester: [
+    semesters: [
         {
+            number: {
+                type: String,
+                required: true
+            },
             subjects: [
                 {
                     name: {
