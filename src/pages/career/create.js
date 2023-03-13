@@ -50,32 +50,36 @@ const create = () => {
                 subjects,
             });
         }
+        if (!e.target.checked) {
+            const newSubjects = subjects.filter(sub => sub.name !== e.target.name)
+            setSubjects(newSubjects)
+        }
 
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // const res = await axios.post("/api/career/create", career);
-            // console.log(res);
+            const res = await axios.post("/api/career/create", career);
+            console.log(res);
         } catch (err) {
             console.log(err);
         }
-        finally {
-            console.log(career)
-        }
     };
 
-    // useEffect(() => {
-    //     setSemester({
-    //         ...semester,
-    //         subjects,
-    //     });
-    //     // setCareer({
-    //     //     ...career,
-    //     //     semesters: [semester],
-    //     // });
-    // }, [career]);
+    useEffect(() => {
+        setSemester({
+            ...semester,
+            subjects,
+        });
+    }, [subjects])
+
+    useEffect(() => {
+        setCareer({
+            ...career,
+            semesters: [semester],
+        });
+    }, [semester])
 
     const subjectsList = () => (
         <div className="flex flex-wrap gap-3">
@@ -152,19 +156,6 @@ const create = () => {
                         />
 
                         {/* subject */}
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="name subject"
-                            onChange={handleSubject}
-                        />
-                        <input
-                            type="text"
-                            name="description"
-                            placeholder="description subject"
-                            onChange={handleSubject}
-                        />
-
                         {subjectsList()}
 
                     </div>
