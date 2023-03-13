@@ -1,20 +1,23 @@
 import Career from '@/models/Career'
+import { dbConnect } from '@/utils/mongoose'
 
 const createCareer = async (req, res) => {
+
     try {
 
-        const { name, description, salary, image, semester } = req.body
+        dbConnect()
+
+        const { name, description, salary, image, semesters } = req.body
         
         const newCareer = await Career.create({
             name,
             description,
             salary,
             image,
-            semester
+            semesters
         })
 
-        const savedCareer = await newCareer.save()
-        res.status(201).json(savedCareer)
+        res.status(201).json(newCareer)
 
     } catch (err) {
         console.log(err)

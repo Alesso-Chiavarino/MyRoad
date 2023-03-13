@@ -15,10 +15,10 @@ export const dbConnect = async () => {
     console.log(db.connection.db.databaseName)
 }
 
-connection.on('connected', () => {
-    console.log('connected')
-})
+// connection.on('connected', () => {
+//     console.log('connected')
+// })
 
-connection.on('error', (err) => {
-    console.log(err)
-})
+// connection.on('error', (err) => {
+//     console.log(err)
+// })
