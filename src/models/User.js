@@ -14,7 +14,13 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    careers: [
+        {
+            type: String,
+            trim: true
+        },
+    ],
 }, { timestamps: true });
 
 export default models.User || model('User', userSchema);

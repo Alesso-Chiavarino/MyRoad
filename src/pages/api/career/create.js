@@ -1,5 +1,7 @@
 import Career from '@/models/Career'
+import User from '@/models/User'
 import { dbConnect } from '@/utils/mongoose'
+import jwt from 'jsonwebtoken'
 
 const createCareer = async (req, res) => {
 
@@ -8,7 +10,7 @@ const createCareer = async (req, res) => {
         dbConnect()
 
         const { name, description, salary, image, semesters } = req.body
-        
+
         const newCareer = await Career.create({
             name,
             description,
@@ -17,7 +19,22 @@ const createCareer = async (req, res) => {
             semesters
         })
 
-        res.status(201).json(newCareer)
+        const email = await jwt.verify(req.cookies.token, 'secret').email
+
+        console.log(newCareer._id)
+
+        const user = await User.findOne({ email })
+
+
+
+        const updatedUser = await User.findByIdAndUpdate(user._id, {
+            ...user,
+            careers: [newCareer._id]
+        }, { new: true })
+
+        console.log(updatedUser)
+
+        res.status(201).json(updatedUser)
 
     } catch (err) {
         console.log(err)
