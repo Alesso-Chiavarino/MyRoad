@@ -21,15 +21,12 @@ const createCareer = async (req, res) => {
 
         const email = await jwt.verify(req.cookies.token, 'secret').email
 
-        console.log(newCareer._id)
+        // const user = await User.findOne({ email })
 
-        const user = await User.findOne({ email })
-
-
-
-        const updatedUser = await User.findByIdAndUpdate(user._id, {
-            ...user,
-            careers: [newCareer._id]
+        const updatedUser = await User.findOneAndUpdate({ email }, {
+            $push: {
+                careers: newCareer._id
+            }
         }, { new: true })
 
         console.log(updatedUser)
