@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Layout from '@/components/Layout'
 
 const register = () => {
 
@@ -16,9 +17,9 @@ const register = () => {
         e.preventDefault()
         try {
             const res = await axios.post('/api/auth/register', credentials)
-        console.log(res)
+            console.log(res)
         }
-        catch(err) {
+        catch (err) {
             console.log(err)
         }
         finally {
@@ -35,16 +36,18 @@ const register = () => {
     }
 
     return (
-        <section>
-            <h1>Register</h1>
-            <form action="" onSubmit={handleSubmit}>
-                <input type="text" name='name' placeholder='name...' onChange={handleChange} />
-                <input type="text" name='email' placeholder='email...' onChange={handleChange} />
-                <input type="text" placeholder='password...' name='password' onChange={handleChange} />
+        <Layout title={'Register'}>
+            <section>
+                <h1>Register</h1>
+                <form action="" onSubmit={handleSubmit}>
+                    <input type="text" name='name' placeholder='name...' onChange={handleChange} />
+                    <input type="text" name='email' placeholder='email...' onChange={handleChange} />
+                    <input type="text" placeholder='password...' name='password' onChange={handleChange} />
 
-                <button>Register</button>
-            </form>
-        </section>
+                    <button>Register</button>
+                </form>
+            </section>
+        </Layout>
     )
 }
 
