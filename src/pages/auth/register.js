@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Layout from '@/components/Layout'
+import RegisterForm from '@/components/RegisterForm'
 
 const register = () => {
 
@@ -12,6 +13,8 @@ const register = () => {
         password: '',
         name: ''
     })
+
+    const [inputType, setInputType] = useState('password');
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -35,18 +38,15 @@ const register = () => {
         })
     }
 
+    const showPassword = () => {
+        setInputType(inputType === 'password' ? 'text' : 'password')
+    }
+
     return (
         <Layout title={'Register'}>
-            <section>
-                <h1>Register</h1>
-                <form action="" onSubmit={handleSubmit}>
-                    <input type="text" name='name' placeholder='name...' onChange={handleChange} />
-                    <input type="text" name='email' placeholder='email...' onChange={handleChange} />
-                    <input type="text" placeholder='password...' name='password' onChange={handleChange} />
-
-                    <button>Register</button>
-                </form>
-            </section>
+            <div className='flex justify-center mt-20'>
+                <RegisterForm showPassword={showPassword} handleChange={handleChange} handleSubmit={handleSubmit} inputType={inputType} />
+            </div>
         </Layout>
     )
 }

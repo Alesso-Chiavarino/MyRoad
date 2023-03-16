@@ -38,7 +38,7 @@ const Navbar = () => {
         if (!isLogged) {
             return (
                 <div className='flex gap-5 items-center'>
-                    <Link href="/auth/login" className='flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md'>
+                    <Link href="/auth/login" className={`flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/auth/login' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
                         <IoLogIn className='text-xl' />
                         <span>Login</span>
                     </Link>
@@ -53,7 +53,6 @@ const Navbar = () => {
                         <button>Log out</button>
                     </div>
                     <MdAccountCircle className='text-2xl text-[#B8BFC6] cursor-pointer hover:text-white transition-all duration-200' />
-                    {/* <Link href={'/auth/register'} className='bg-red-400 hover:bg-[#6030ffd8] cursor-pointer text-white font-bold px-3 py-1 rounded-md'>Log out</Link> */}
                 </div>
             )
         }
@@ -65,11 +64,11 @@ const Navbar = () => {
                 <div className='flex items-center gap-5'>
                     <Brand />
                     <ul className='flex gap-3 font-bold text-[#B8BFC6]'>
-                        <Link href={'/'} className='flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md'>
+                        <Link href={'/'} className={`flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
                             <AiFillHome />
                             <li>Home</li>
                         </Link>
-                        <Link href={'/career/create'} className='flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md'>
+                        <Link href={'/career/create'} className={`flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/career/create' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
                             <IoSchool />
                             <li>Careers</li>
                         </Link>
