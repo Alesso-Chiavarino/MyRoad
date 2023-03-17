@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "@/components/Layout";
+import { IoClose } from "react-icons/io5";
 
 const create = () => {
     const [career, setCareer] = useState({
@@ -121,14 +122,14 @@ const create = () => {
     useEffect(() => {
         setSemester({
             ...semester,
-            subjects,
+            // ...semesterListStore, i update this
         });
     }, [subjects])
 
     useEffect(() => {
         setCareer({
             ...career,
-            semesters: [semester],
+            semesters: semesterListStore,
         });
     }, [semester])
 
@@ -138,31 +139,11 @@ const create = () => {
 
     const [careerName, setCareerName] = useState('')
 
-    const [semesterListStore, setSemesterListStore] = useState([
-        {
-            number: '1',
-            subjects: [
-                {
-                    name: 'AM-1'
-                },
-                {
-                    name: 'LAB-1'
-                },
-                {
-                    name: 'TD'
-                },
-                {
-                    name: 'IT-1'
-                },
-                {
-                    name: 'A-1'
-                }
-            ]
-        }
-    ])
+    const [semesterListStore, setSemesterListStore] = useState([])
 
     const handleSemesterStore = (e) => {
         e.preventDefault()
+
         setSemesterListStore([
             ...semesterListStore,
             {
@@ -212,6 +193,16 @@ const create = () => {
         }
     }
 
+    const deleteSemester = (semesterNumber) => {
+        const newSemesterListStore = semesterListStore.filter(semester => semester.number !== semesterNumber)
+        setSemesterListStore(newSemesterListStore)
+    }
+
+    useEffect(() => {
+        //store semester from the menor to the mayor
+        setSemesterListStore(semesterListStore.sort((a, b) => a.number - b.number))
+    }, [semesterListStore])
+
     return (
         <Layout title={'Create Career'}>
             <section className="container mx-auto flex justify-center mt-20 gap-20">
@@ -253,25 +244,28 @@ const create = () => {
                         <button className="bg-white font-bold w-full rounded-md py-2 mt-5">Create</button>
                     </form>
                 </div>
-                <div className="bg-[#111111] w-[300px] p-10 rounded-md text-white">
-                    <h3 className="font-bold text-lg">Semesters</h3>
-                    {semesterListStore.map((semester, index) => {
-                        return (
-                            <div key={index} className='bg-[#7148FC] rounded-md flex flex-col gap-2'>
-                                <span className="self-end">X</span>
-                                <div>
-                                    <h3 className="font-bold">{semester.number}</h3>
-                                    <ul>
-                                        {semester.subjects.map((subject, index) => {
-                                            return (
-                                                <li key={index}>{subject.name}</li>
-                                            )
-                                        })}
-                                    </ul>
-                                </div>
-                            </div>
-                        )
-                    })}
+                <div className="bg-[#111111] w-[300px] p-10 rounded-md text-white ">
+                    <h3 className="font-bold text-lg mb-2">Semesters</h3>
+                    <ul className="flex flex-col gap-5 h-[500px] overflow-y-auto">
+                        {semesterListStore.map((semester, index) => {
+                            //list in the menor to the mayor
+                            return (
+                                <li key={index} className='bg-[#1A1A1A] flex flex-col rounded-md'>
+                                    <IoClose onClick={() => deleteSemester(semester.number)} className="self-end text-xl text-[#D6DEE7] cursor-pointer m-2 hover:text-white" />
+                                    <div className="flex flex-col gap-2">
+                                        <h3 className="font-bold text-[#D6DEE7] px-5">{semester.number}° semester</h3>
+                                        <ul className="grid grid-cols-3 gap-5 py-3 px-5">
+                                            {semester.subjects.map((subject, index) => {
+                                                return (
+                                                    <li key={index} className='bg-[#252525] rounded-md text-center text-[#D6DEE7]'>{subject.name}</li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
                 </div>
             </section>
         </Layout>
