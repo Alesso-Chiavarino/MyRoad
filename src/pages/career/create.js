@@ -13,6 +13,29 @@ const create = () => {
 
     const [subjects, setSubjects] = useState([]);
 
+    const [subjectsList, setSubjectsList] = useState([
+        {
+            name: "AM-1",
+            checked: false,
+        },
+        {
+            name: "LAB-1",
+            checked: false,
+        },
+        {
+            name: "TD",
+            checked: false,
+        },
+        {
+            name: "IT-1",
+            checked: false,
+        },
+        {
+            name: "A-1",
+            checked: false,
+        },
+    ]);
+
     const [semester, setSemester] = useState({
         number: "",
         subjects: [],
@@ -50,12 +73,39 @@ const create = () => {
                 ...semester,
                 subjects,
             });
+
+            const newListSubjects = subjectsList.map(subject => {
+                if (subject.name === e.target.name) {
+                    return {
+                        ...subject,
+                        checked: true
+                    }
+                }
+                return subject
+            })
+            setSubjectsList(newListSubjects)
+
         }
+
         if (!e.target.checked) {
             const newSubjects = subjects.filter(sub => sub.name !== e.target.name)
             setSubjects(newSubjects)
-        }
+            setSemester({
+                ...semester,
+                subjects: newSubjects,
+            });
 
+            const newListSubjects = subjectsList.map(subject => {
+                if (subject.name === e.target.name) {
+                    return {
+                        ...subject,
+                        checked: false
+                    }
+                }
+                return subject
+            })
+            setSubjectsList(newListSubjects)
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -88,40 +138,74 @@ const create = () => {
 
     const [careerName, setCareerName] = useState('')
 
-    const subjectsList = () => {
+    const [semesterListStore, setSemesterListStore] = useState([
+        {
+            number: '1',
+            subjects: [
+                {
+                    name: 'AM-1'
+                },
+                {
+                    name: 'LAB-1'
+                },
+                {
+                    name: 'TD'
+                },
+                {
+                    name: 'IT-1'
+                },
+                {
+                    name: 'A-1'
+                }
+            ]
+        }
+    ])
+
+    const handleSemesterStore = (e) => {
+        e.preventDefault()
+        setSemesterListStore([
+            ...semesterListStore,
+            {
+                number: semester.number,
+                subjects: subjects
+            }
+        ])
+
+        const newListSubjects = subjectsList.map(subject => {
+            return {
+                ...subject,
+                checked: false
+            }
+        })
+        setSubjectsList(newListSubjects)
+
+        setSemester({
+            number: '',
+            subjects: []
+        })
+        setSubjects([])
+    }
+
+    const subjectsListRender = () => {
         if (careerName === 'Informatic Engineering') {
+
             return (
                 (
                     <div>
                         <span className="text-[#D6DEE7] font-bold block mb-2 text-lg">Subjects list</span>
                         <div className="flex flex-wrap gap-3">
 
-                            <label className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
-                                <span>AM-1</span>
-                                <input onChange={handleSubject} type="checkbox" name="AM-1" className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
-                            </label>
-
-                            <label className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
-                                <span>LAB-1</span>
-                                <input onChange={handleSubject} type="checkbox" name="LAB-1" className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
-                            </label>
-
-                            <label className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
-                                <span>TD</span>
-                                <input onChange={handleSubject} type="checkbox" name="TD" className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
-                            </label>
-
-                            <label className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
-                                <span>IT-1</span>
-                                <input onChange={handleSubject} type="checkbox" name="IT-1" className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
-                            </label>
-
-                            <label className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
-                                <span>A-1</span>
-                                <input onChange={handleSubject} type="checkbox" name="A-1" className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
-                            </label>
+                            {subjectsList.map((subject, index) => {
+                                return (
+                                    <label key={index} className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
+                                        <span>{subject.name}</span>
+                                        <input onChange={handleSubject} type="checkbox" checked={subject.checked} name={subject.name} className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
+                                    </label>
+                                )
+                            })}
 
                         </div>
+                        <button className="bg-white font-bold rounded-md px-2 py-1 mt-5" onClick={handleSemesterStore}>Add Semester</button>
                     </div>
                 )
             )
@@ -130,8 +214,8 @@ const create = () => {
 
     return (
         <Layout title={'Create Career'}>
-            <section className="container mx-auto flex justify-center">
-                <div className="bg-[#111111] w-[600px] rounded-md mt-20 p-10">
+            <section className="container mx-auto flex justify-center mt-20 gap-20">
+                <div className="bg-[#111111] w-[600px] rounded-md p-10">
                     <h1 className="text-3xl text-white font-extrabold mb-10">Create a Career</h1>
                     <form action="" onSubmit={handleSubmit} className=" ">
                         <span className="text-[#D6DEE7] font-bold block mb-2 text-lg">Information of the career</span>
@@ -151,7 +235,7 @@ const create = () => {
                                 <span className="text-[#D6DEE7] font-bold block mb-2 text-lg">Information of the subjects</span>
                                 <div className="flex flex-col gap-5">
 
-                                    <select className="block px-3 py-2 text-[#D6DEE7] font-medium bg-transparent border border-gray-300 rounded-md shadow-sm w-1/2 focus:outline-none focus:ring-primary-500 focus:border-primary-500" id="hola" name="careers" onChange={handleCareersSubjectsForm}>
+                                    <select className="block px-3 py-2 text-[#D6DEE7] font-medium bg-transparent border border-gray-300 rounded-md shadow-sm w-1/2 focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="careers" onChange={handleCareersSubjectsForm}>
                                         <option value="" className="bg-[#111111] font-medium text-[#D6DEE7]">
                                             Select a career
                                         </option>
@@ -160,14 +244,34 @@ const create = () => {
                                         </option>
                                     </select>
 
-                                    <input type="text" name="number" placeholder="semester num" onChange={handleSemester} className='bg-[#111111] border-[1px] border-[#B8BFC6] p-2 rounded-md w-full outline-none focus:border-[#7148FC] transition-all duration-300 placeholder:font-medium' />
-                                    {subjectsList()}
+                                    <input type="text" name="number" placeholder="semester num" onChange={handleSemester} value={semester.number} className='bg-[#111111] border-[1px] border-[#B8BFC6] p-2 rounded-md w-full outline-none text-[#D6DEE7] focus:border-[#7148FC] transition-all duration-300 placeholder:font-medium' />
+                                    {subjectsListRender()}
                                 </div>
                             </div>
                         </div>
 
                         <button className="bg-white font-bold w-full rounded-md py-2 mt-5">Create</button>
                     </form>
+                </div>
+                <div className="bg-[#111111] w-[300px] p-10 rounded-md text-white">
+                    <h3 className="font-bold text-lg">Semesters</h3>
+                    {semesterListStore.map((semester, index) => {
+                        return (
+                            <div key={index} className='bg-[#7148FC] rounded-md flex flex-col gap-2'>
+                                <span className="self-end">X</span>
+                                <div>
+                                    <h3 className="font-bold">{semester.number}</h3>
+                                    <ul>
+                                        {semester.subjects.map((subject, index) => {
+                                            return (
+                                                <li key={index}>{subject.name}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </section>
         </Layout>
