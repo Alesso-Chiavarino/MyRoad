@@ -10,17 +10,26 @@ import Brand from './Brand'
 const Navbar = () => {
 
     const [isLogged, setIsLogged] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     const navigate = useRouter()
 
     useEffect(() => {
         const loadToken = async () => {
-            const res = await fetch('http://localhost:3000/api/auth/token')
-            const data = await res.json()
-            if (data.token) {
-                setIsLogged(true)
-            } else {
-                setIsLogged(false)
+            try {
+                const res = await fetch('http://localhost:3000/api/auth/token')
+                const data = await res.json()
+                if (data.token) {
+                    setIsLogged(true)
+                } else {
+                    setIsLogged(false)
+                }
+
+            } catch (err) {
+                console.log(err)
+            }
+            finally {
+                setIsLoading(false)
             }
         }
         loadToken()
@@ -35,26 +44,28 @@ const Navbar = () => {
 
 
     const handleAuthButtons = () => {
-        if (!isLogged) {
-            return (
-                <div className='flex gap-5 items-center'>
-                    <Link href="/auth/login" className={`flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/auth/login' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
-                        <IoLogIn className='text-xl' />
-                        <span>Login</span>
-                    </Link>
-                    <Link href={'/auth/register'} className='bg-[#7148FC] hover:bg-[#6030ffd8] cursor-pointer text-white font-bold px-3 py-1 rounded-md'>Sign Up</Link>
-                </div>
-            )
-        } else {
-            return (
-                <div className='flex gap-5 items-center'>
-                    <div className='flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md' onClick={handleLogout}>
-                        <IoLogOut className='text-xl' />
-                        <button>Log out</button>
+        if (!isLoading) {
+            if (!isLogged) {
+                return (
+                    <div className='flex gap-5 items-center'>
+                        <Link href="/auth/login" className={`flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/auth/login' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
+                            <IoLogIn className='text-xl' />
+                            <span>Login</span>
+                        </Link>
+                        <Link href={'/auth/register'} className='bg-[#7148FC] hover:bg-[#6030ffd8] cursor-pointer text-white font-bold px-3 py-1 rounded-md'>Sign Up</Link>
                     </div>
-                    <MdAccountCircle className='text-2xl text-[#B8BFC6] cursor-pointer hover:text-white transition-all duration-200' />
-                </div>
-            )
+                )
+            } else {
+                return (
+                    <div className='flex gap-5 items-center'>
+                        <div className='flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md' onClick={handleLogout}>
+                            <IoLogOut className='text-xl' />
+                            <button>Log out</button>
+                        </div>
+                        <MdAccountCircle className='text-2xl text-[#B8BFC6] cursor-pointer hover:text-white transition-all duration-200' />
+                    </div>
+                )
+            }
         }
     }
 

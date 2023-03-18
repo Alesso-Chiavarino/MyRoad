@@ -1,7 +1,10 @@
+import { MdFilterListAlt } from 'react-icons/md'
+import { SiAddthis } from 'react-icons/si'
+
 const InputsSubjectList = ({ subjectsList, handleSubject, handleSemesterStore }) => {
     return (
         <div>
-            <span className="text-[#D6DEE7] font-bold block mb-2 text-lg">Subjects list</span>
+            <span className="text-[#D6DEE7] flex items-center gap-1 font-bold mb-2 text-lg">Subjects list <MdFilterListAlt /></span>
             <div className="flex flex-wrap gap-3">
 
                 {subjectsList.map((subject, index) => {
@@ -14,7 +17,7 @@ const InputsSubjectList = ({ subjectsList, handleSubject, handleSemesterStore })
                 })}
 
             </div>
-            <button className="bg-white font-bold rounded-md px-2 py-1 mt-5" onClick={handleSemesterStore}>Add Semester</button>
+            <button className="bg-white font-bold rounded-md flex items-center gap-1 px-2 py-1 mt-5" onClick={handleSemesterStore}><SiAddthis />Add Semester</button>
         </div>
     )
 }

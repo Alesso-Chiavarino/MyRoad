@@ -18,7 +18,7 @@ const career = () => {
             {career?.map(car => {
                 return (
                     <div key={car._id}>
-                        <h1>{car.name}</h1>
+                        <h1 className="text-xl font-bold text-white">{car.name}</h1>
                         <p>{car.description}</p>
                         <span>{car.salary}</span>
                         <span>semesters:</span>
