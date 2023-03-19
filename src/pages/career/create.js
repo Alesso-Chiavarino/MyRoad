@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import CareerForm from "@/components/CareerForm";
 import SemestersFormList from "@/components/SemestersFormList";
 import InputsSubjectList from "@/components/InputsSubjectList";
+import careerSubjects from "@/data/subjects";
 
 const create = () => {
     const [career, setCareer] = useState({
@@ -15,29 +16,6 @@ const create = () => {
     });
 
     const [subjects, setSubjects] = useState([]);
-
-    const [subjectsList, setSubjectsList] = useState([
-        {
-            name: "AM-1",
-            checked: false,
-        },
-        {
-            name: "LAB-1",
-            checked: false,
-        },
-        {
-            name: "TD",
-            checked: false,
-        },
-        {
-            name: "IT-1",
-            checked: false,
-        },
-        {
-            name: "A-1",
-            checked: false,
-        },
-    ]);
 
     const [semester, setSemester] = useState({
         number: "",
@@ -138,6 +116,8 @@ const create = () => {
         setCareerName(e.target.value)
     }
 
+
+
     const [careerName, setCareerName] = useState('')
 
     const [semesterListStore, setSemesterListStore] = useState([])
@@ -181,6 +161,22 @@ const create = () => {
         //store semester from the menor to the mayor
         setSemesterListStore(semesterListStore.sort((a, b) => a.number - b.number))
     }, [semesterListStore])
+
+    const hola = careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
+
+    // console.log(hola)
+    const [subjectsList, setSubjectsList] = useState([
+        careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
+    ]);
+    // console.log(subjectsList[0])
+
+    useEffect(() => {
+        if (careerName === 'Informatic Engineering') {
+            setSubjectsList([
+                careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
+            ])
+        }
+    }, [semester.number, careerName])
 
     return (
         <Layout title={'Create Career'}>

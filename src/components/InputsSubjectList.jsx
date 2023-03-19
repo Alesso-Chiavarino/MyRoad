@@ -2,16 +2,17 @@ import { MdFilterListAlt } from 'react-icons/md'
 import { SiAddthis } from 'react-icons/si'
 
 const InputsSubjectList = ({ subjectsList, handleSubject, handleSemesterStore }) => {
+    console.log(subjectsList)
     return (
         <div>
             <span className="text-[#D6DEE7] flex items-center gap-1 font-bold mb-2 text-lg">Subjects list <MdFilterListAlt /></span>
             <div className="flex flex-wrap gap-3">
 
-                {subjectsList.map((subject, index) => {
+                {subjectsList[0]?.map((subject, index) => {
                     return (
                         <label key={index} className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
-                            <span>{subject.name}</span>
-                            <input onChange={handleSubject} type="checkbox" checked={subject.checked} name={subject.name} className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
+                            <span>{subject?.code}</span>
+                            <input onChange={handleSubject} type="checkbox" checked={subject?.checked} name={subject?.code} className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
                         </label>
                     )
                 })}
