@@ -1,6 +1,6 @@
 import { AiFillHome } from 'react-icons/ai'
 import { IoSchool, IoLogIn, IoLogOut } from 'react-icons/io5'
-import { MdAccountCircle } from 'react-icons/md'
+import { MdAccountCircle, MdSpaceDashboard } from 'react-icons/md'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -78,6 +78,10 @@ const Navbar = () => {
                         <Link href={'/'} className={`flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
                             <AiFillHome />
                             <li>Home</li>
+                        </Link>
+                        <Link href={'/dashboard'} className={`flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/dashboard' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
+                            <MdSpaceDashboard />
+                            <li>Dashboard</li>
                         </Link>
                         <Link href={'/career/create'} className={`flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/career/create' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
                             <IoSchool />

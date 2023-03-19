@@ -27,22 +27,19 @@ const careerSchema = new Schema({
                         type: String,
                         required: true
                     },
-                    // califications: [
-                    //     {
-                    //         name: {
-                    //             type: String,
-                    //             required: true
-                    //         },
-                    //         value: {
-                    //             type: Number,
-                    //             required: true
-                    //         },
-                    //         condition: {
-                    //             type: String,
-                    //             required: true
-                    //         }
-                    //     }
-                    // ]
+                    califications: [
+                        {
+                            name: {
+                                type: String,
+                            },
+                            value: {
+                                type: Number,
+                            },
+                            condition: {
+                                type: String,
+                            }
+                        }
+                    ]
                 }
             ]
         }
