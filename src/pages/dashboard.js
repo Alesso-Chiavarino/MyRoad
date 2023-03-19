@@ -1,5 +1,6 @@
 import Bump from '@/components/Bump'
 import CalificationForm from '@/components/CalificationForm'
+import CareerTable from '@/components/CareerTable'
 import Layout from '@/components/Layout'
 import Pie from '@/components/Pie'
 
@@ -151,7 +152,8 @@ const dashboard = () => {
         <Layout>
             <div>
                 <h1 className='text-2xl text-white font-bold'>Dashboard</h1>
-                <CalificationForm />
+                {/* <CareerTable /> */}
+                {/* <CalificationForm /> */}
                 <div className='my-10 grid grid-cols-2 gap-10'>
                     <Pie dataPie={dataPie} />
                     <Bump dataBump={dataBump} />

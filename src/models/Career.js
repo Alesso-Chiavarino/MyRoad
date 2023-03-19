@@ -27,6 +27,10 @@ const careerSchema = new Schema({
                         type: String,
                         required: true
                     },
+                    duration: {
+                        type: Number,
+                        required: true
+                    },
                     califications: [
                         {
                             name: {
