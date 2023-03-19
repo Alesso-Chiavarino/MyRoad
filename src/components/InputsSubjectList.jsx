@@ -2,13 +2,13 @@ import { MdFilterListAlt } from 'react-icons/md'
 import { SiAddthis } from 'react-icons/si'
 
 const InputsSubjectList = ({ subjectsList, handleSubject, handleSemesterStore }) => {
-    console.log(subjectsList)
+    // console.log(subjectsList)
     return (
         <div>
             <span className="text-[#D6DEE7] flex items-center gap-1 font-bold mb-2 text-lg">Subjects list <MdFilterListAlt /></span>
             <div className="flex flex-wrap gap-3">
 
-                {subjectsList[0]?.map((subject, index) => {
+                {subjectsList?.map((subject, index) => {
                     return (
                         <label key={index} className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
                             <span>{subject?.code}</span>

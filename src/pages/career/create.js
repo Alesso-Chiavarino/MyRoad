@@ -40,7 +40,7 @@ const create = () => {
             ...career,
             semesters: [semester],
         });
-    };
+    }
 
     const handleSubject = async (e) => {
         if (e.target.checked) {
@@ -55,14 +55,18 @@ const create = () => {
                 subjects,
             });
 
-            const newListSubjects = subjectsList.map(subject => {
-                if (subject.name === e.target.name) {
+            //feo
+            const newListSubjects = subjectsList?.map(sub => {
+                // console.log(sub.code)
+                // console.log(e.target.name)
+                if (sub.code === e.target.name) {
+                    console.log('entro')
                     return {
-                        ...subject,
+                        ...sub,
                         checked: true
                     }
                 }
-                return subject
+                return sub
             })
             setSubjectsList(newListSubjects)
 
@@ -162,19 +166,14 @@ const create = () => {
         setSemesterListStore(semesterListStore.sort((a, b) => a.number - b.number))
     }, [semesterListStore])
 
-    const hola = careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
+    const filteredCareerSubjects = careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
 
-    // console.log(hola)
-    const [subjectsList, setSubjectsList] = useState([
-        careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
-    ]);
-    // console.log(subjectsList[0])
+    const [subjectsList, setSubjectsList] = useState([]);
 
     useEffect(() => {
         if (careerName === 'Informatic Engineering') {
-            setSubjectsList([
-                careerSubjects.find(career => career.name === careerName)?.semesters?.find(sem => sem.number === Number(semester?.number))?.subjects
-            ])
+            setSubjectsList(filteredCareerSubjects)
+
         }
     }, [semester.number, careerName])
 
