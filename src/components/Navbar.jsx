@@ -6,24 +6,34 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Brand from './Brand'
+import { useUser } from '../context/UserContext'
 
 const Navbar = () => {
 
     const [isLogged, setIsLogged] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
+    const { user, setUserToken } = useUser()
+
     const navigate = useRouter()
 
     useEffect(() => {
         const loadToken = async () => {
             try {
+                if (user?.length > 10) {
+                    return setIsLogged(true)
+                }
+
+
                 const res = await fetch('http://localhost:3000/api/auth/token')
                 const data = await res.json()
+                setUserToken(data.token)
                 if (data.token) {
                     setIsLogged(true)
                 } else {
                     setIsLogged(false)
                 }
+
 
             } catch (err) {
                 console.log(err)

@@ -12,7 +12,7 @@ const InputsSubjectList = ({ subjectsList, handleSubject, handleSemesterStore })
                     return (
                         <label key={index} className="cursor-pointer flex gap-2 text-[#D6DFF7] bg-[#111111] flex-row-reverse items-center justify-center border-[1px] border-[#B8BFC6] p-2 rounded-md">
                             <span>{subject?.code}</span>
-                            <input onChange={handleSubject} type="checkbox" checked={subject?.checked} name={subject?.code} className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
+                            <input onChange={handleSubject} value={subject?.duration} type="checkbox" checked={subject?.checked} name={subject?.code} className="border-[1px] border-white form-tick appearance-none bg-check h-4 w-4  rounded-md checked:bg-[#7148FC]  checked:border-transparent focus:outline-none" />
                         </label>
                     )
                 })}

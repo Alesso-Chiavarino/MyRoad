@@ -44,10 +44,12 @@ const create = () => {
 
     const handleSubject = async (e) => {
         if (e.target.checked) {
+            console.log(e.target.value)
             setSubjects([
                 ...subjects,
                 {
                     name: e.target.name,
+                    duration: e.target.value,
                 }
             ]);
             setSemester({
@@ -176,6 +178,7 @@ const create = () => {
 
         }
     }, [semester.number, careerName])
+
 
     return (
         <Layout title={'Create Career'}>

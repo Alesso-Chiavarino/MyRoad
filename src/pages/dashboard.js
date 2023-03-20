@@ -3,41 +3,50 @@ import CalificationForm from '@/components/CalificationForm'
 import CareerTable from '@/components/CareerTable'
 import Layout from '@/components/Layout'
 import Pie from '@/components/Pie'
+import { useCareer } from '@/context/CareerContext'
+import { useEffect, useState } from 'react'
 
 const dashboard = () => {
 
-    const dataPie = [
-        {
-            "id": "python",
-            "label": "python",
-            "value": 315,
-            "color": "hsl(215, 70%, 50%)"
-        },
-        {
-            "id": "elixir",
-            "label": "elixir",
-            "value": 506,
-            "color": "hsl(291, 70%, 50%)"
-        },
-        {
-            "id": "scala",
-            "label": "scala",
-            "value": 361,
-            "color": "hsl(64, 70%, 50%)"
-        },
-        {
-            "id": "javascript",
-            "label": "javascript",
-            "value": 1000,
-            "color": "hsl(22, 70%, 50%)"
-        },
-        {
-            "id": "rust",
-            "label": "rust",
-            "value": 295,
-            "color": "hsl(75, 70%, 50%)"
+    const { career } = useCareer()
+    const [dataPie, setDataPie] = useState([])
+
+    useEffect(() => {
+        if (career[0]) {
+            const data = career[0].semesters[0].subjects.map(sub => {
+                return {
+                    id: sub.name,
+                    label: sub.name,
+                    value: sub.duration,
+                    color: 'hsl(215, 70%, 50%)'
+                }
+            })
+            setDataPie(data)
         }
-    ]
+    }, [career])
+
+    // const [dataBump, setDataBump] = useState([])
+
+    // useEffect(() => {
+    //     if (career[0]) {
+    //         const data = career[0]?.semesters[0]?.subjects.map(sub => {
+    //             return {
+    //                 id: sub.name,
+    //                 data: [
+    //                     sub.califications?.map(cal => {
+    //                         return {
+    //                             x: sub.name,
+    //                             y: cal.value
+    //                         }
+    //                     })
+    //                 ]
+    //             }
+    //         })
+    //         setDataBump(data)
+    //     }
+    // }, [career])
+
+
 
     const dataBump = [
         {
@@ -152,9 +161,10 @@ const dashboard = () => {
         <Layout>
             <div>
                 <h1 className='text-2xl text-white font-bold'>Dashboard</h1>
-                {/* <CareerTable /> */}
-                {/* <CalificationForm /> */}
+                <CareerTable />
+                <CalificationForm />
                 <div className='my-10 grid grid-cols-2 gap-10'>
+                    {/* <div className='my-10'> */}
                     <Pie dataPie={dataPie} />
                     <Bump dataBump={dataBump} />
                 </div>
