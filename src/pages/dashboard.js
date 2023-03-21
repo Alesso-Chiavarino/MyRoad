@@ -3,6 +3,7 @@ import CalificationForm from '@/components/CalificationForm'
 import CareerTable from '@/components/CareerTable'
 import Layout from '@/components/Layout'
 import Pie from '@/components/Pie'
+import ProgressPerfilCard from '@/components/ProgressPerfilCard'
 import { useCareer } from '@/context/CareerContext'
 import { useEffect, useState } from 'react'
 
@@ -161,12 +162,13 @@ const dashboard = () => {
         <Layout>
             <div>
                 <h1 className='text-2xl text-white font-bold'>Dashboard</h1>
-                <CareerTable />
-                <CalificationForm />
+                <ProgressPerfilCard />
+                {/* <CareerTable /> */}
+                {/* <CalificationForm /> */}
                 <div className='my-10 grid grid-cols-2 gap-10'>
                     {/* <div className='my-10'> */}
-                    <Pie dataPie={dataPie} />
-                    <Bump dataBump={dataBump} />
+                    {/* <Pie dataPie={dataPie} />
+                    <Bump dataBump={dataBump} /> */}
                 </div>
             </div>
         </Layout>
