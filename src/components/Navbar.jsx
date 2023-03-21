@@ -18,17 +18,20 @@ const Navbar = () => {
     const navigate = useRouter()
 
     useEffect(() => {
+
         const loadToken = async () => {
             try {
-                if (user?.length > 10) {
-                    return setIsLogged(true)
+                if (user) {
+                    if (user?.email?.length > 1) {
+                        return setIsLogged(true)
+                    }
                 }
 
 
                 const res = await fetch('http://localhost:3000/api/auth/token')
                 const data = await res.json()
-                setUserToken(data.token)
-                if (data.token) {
+                setUserToken(data)
+                if (data) {
                     setIsLogged(true)
                 } else {
                     setIsLogged(false)
@@ -44,6 +47,7 @@ const Navbar = () => {
         }
         loadToken()
     }, [])
+
 
     const handleLogout = async () => {
         const res = await axios.post('http://localhost:3000/api/auth/logout')

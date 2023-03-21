@@ -1,6 +1,9 @@
+import { useUser } from "@/context/UserContext";
 import { useEffect, useState } from "react";
 
 const ProgressPerfilCard = ({ tasksCompleted = 100, totalTasks = 100 }) => {
+
+    const { user, userInfo } = useUser()
 
     const [progressBarWidth, setProgressBarWidth] = useState(0);
 
@@ -10,6 +13,8 @@ const ProgressPerfilCard = ({ tasksCompleted = 100, totalTasks = 100 }) => {
     }, [tasksCompleted, totalTasks]);
 
     console.log(progressBarWidth)
+
+    console.log(userInfo)
 
     return (
         <div className="relative w-full p-4 overflow-hidden bg-white shadow-lg rounded-xl md:w-72 dark:bg-gray-800">
@@ -23,9 +28,9 @@ const ProgressPerfilCard = ({ tasksCompleted = 100, totalTasks = 100 }) => {
                         />
                     </div>
                     <div className="flex flex-col items-center ml-2">
-                        <span className="dark:text-white">Charlie Rabiller</span>
+                        <span className="dark:text-white">{userInfo.name}</span>
                         <span className="text-sm text-gray-400 dark:text-gray-300">
-                            Tailwind-kit.com
+                            Informatic Engineering
                         </span>
                     </div>
                 </div>
