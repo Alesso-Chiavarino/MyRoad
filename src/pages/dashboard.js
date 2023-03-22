@@ -159,16 +159,25 @@ const dashboard = () => {
 
 
     return (
-        <Layout>
-            <div>
-                <h1 className='text-2xl text-white font-bold'>Dashboard</h1>
-                <ProgressPerfilCard />
+        <Layout title='Dashboard'>
+            <div className='container mx-auto'>
+                <h1 className='text-4xl text-white font-bold my-5'>Overview</h1>
+                <div className='grid grid-cols-3 gap-20'>
+                    <ProgressPerfilCard />
+                    <ProgressPerfilCard />
+                    <ProgressPerfilCard />
+                </div>
                 {/* <CareerTable /> */}
                 {/* <CalificationForm /> */}
-                <div className='my-10 grid grid-cols-2 gap-10'>
+                <div className='my-10 items-center grid grid-cols-2 gap-10'>
                     {/* <div className='my-10'> */}
-                    {/* <Pie dataPie={dataPie} />
-                    <Bump dataBump={dataBump} /> */}
+                        <div className='bg-[#111111] rounded-xl'>
+                            <Pie dataPie={dataPie} />
+                        </div>
+                        <div className='bg-[#111111] rounded-xl'> 
+                            <Bump dataBump={dataBump} />
+                        </div>
+                    {/* </div> */}
                 </div>
             </div>
         </Layout>

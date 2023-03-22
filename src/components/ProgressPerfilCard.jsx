@@ -1,7 +1,7 @@
 import { useUser } from "@/context/UserContext";
 import { useEffect, useState } from "react";
 
-const ProgressPerfilCard = ({ tasksCompleted = 100, totalTasks = 100 }) => {
+const ProgressPerfilCard = ({ tasksCompleted = 10, totalTasks = 100 }) => {
 
     const { user, userInfo } = useUser()
 
@@ -12,38 +12,40 @@ const ProgressPerfilCard = ({ tasksCompleted = 100, totalTasks = 100 }) => {
         setProgressBarWidth(progressPercent);
     }, [tasksCompleted, totalTasks]);
 
-    console.log(progressBarWidth)
+    // console.log(progressBarWidth)
 
-    console.log(userInfo)
+    // console.log(userInfo)
 
     return (
-        <div className="relative w-full p-4 overflow-hidden bg-white shadow-lg rounded-xl md:w-72 dark:bg-gray-800">
-            <div className="block w-full h-full">
-                <div className="flex items-center w-full">
-                    <div className="relative block">
-                        <img
-                            alt="profile"
-                            src=""
-                            className="mx-auto object-cover rounded-full h-10 w-10 "
-                        />
+        // <div className="bg-[#7148FC] p-[1px] rounded-xl">
+            <div className="relative w-full p-4 overflow-hidden shadow-lg rounded-xl bg-[#111111]">
+                <div className="block w-full h-full">
+                    <div className="flex items-center w-full">
+                        <div className="relative block">
+                            <img
+                                alt="profile"
+                                src={`https://robohash.org/${user?.email}`}
+                                className="mx-auto object-cover rounded-full h-10 w-10 "
+                            />
+                        </div>
+                        <div className="flex flex-col justify-center ml-2">
+                            <span className="text-white">{userInfo.name}</span>
+                            <span className="text-sm text-gray-500 dark:text-gray-300">
+                                Informatic Engineering
+                            </span>
+                        </div>
                     </div>
-                    <div className="flex flex-col items-center ml-2">
-                        <span className="dark:text-white">{userInfo.name}</span>
-                        <span className="text-sm text-gray-400 dark:text-gray-300">
-                            Informatic Engineering
-                        </span>
+                    <div className="flex items-center mt-3 justify-between my-2">
+                        <p className="text-sm text-gray-300">{`${tasksCompleted}/${totalTasks} approved subjects`}</p>
                     </div>
-                </div>
-                <div className="flex items-center justify-between my-2">
-                    <p className="text-sm text-gray-300">{`${tasksCompleted}/${totalTasks} task completed`}</p>
-                </div>
-                <div className="w-full h-2 bg-blue-200 rounded-full">
-                    <div
-                        style={{ width: `${progressBarWidth}%` }} className={`h-full text-xs text-center text-white bg-blue-600 rounded-full`}
-                    ></div>
+                    <div className="w-full h-2 bg-[#7148FC]/30 rounded-full">
+                        <div
+                            style={{ width: `${progressBarWidth}%` }} className={`h-full text-xs text-center text-white bg-[#7148FC] rounded-full`}
+                        ></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        // </div>
     );
 };
 

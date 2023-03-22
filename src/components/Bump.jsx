@@ -2,7 +2,7 @@ import { ResponsiveBump } from '@nivo/bump'
 
 const Bump = ({ dataBump }) => {
     return (
-        <div className='h-[500px]'>
+        <div className='h-[300px]'>
             <ResponsiveBump
                 data={dataBump}
                 colors={{ scheme: 'spectral' }}
@@ -45,7 +45,7 @@ const Bump = ({ dataBump }) => {
                     legendPosition: 'middle',
                     legendOffset: -40
                 }}
-                margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
+                margin={{ top: 70, right: 70, bottom: 70, left: 70 }}
                 axisRight={null}
             />
         </div>

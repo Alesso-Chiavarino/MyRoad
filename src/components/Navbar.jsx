@@ -71,12 +71,13 @@ const Navbar = () => {
                 )
             } else {
                 return (
-                    <div className='flex gap-5 items-center'>
+                    <div className='flex gap-3 items-center'>
                         <div className='flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md' onClick={handleLogout}>
                             <IoLogOut className='text-xl' />
                             <button>Log out</button>
                         </div>
-                        <MdAccountCircle className='text-2xl text-[#B8BFC6] cursor-pointer hover:text-white transition-all duration-200' />
+                        <img src={`https://robohash.org/${user?.email}`} alt='user profile image' className='cursor-pointer mx-auto object-cover border-[1px] border-gray-100/50 rounded-full h-11 w-11' />
+                        {/* <MdAccountCircle className='text-2xl text-[#B8BFC6] cursor-pointer hover:text-white transition-all duration-200' /> */}
                     </div>
                 )
             }
