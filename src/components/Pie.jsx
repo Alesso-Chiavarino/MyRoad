@@ -8,6 +8,7 @@ const Pie = ({ dataPie }) => {
                 margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
                 innerRadius={0.5}
                 padAngle={0.7}
+                colors={{ scheme: 'purpleRed_green' }}
                 cornerRadius={3}
                 activeOuterRadiusOffset={8}
                 borderWidth={1}

@@ -5,7 +5,7 @@ const Bump = ({ dataBump }) => {
         <div className='h-[300px]'>
             <ResponsiveBump
                 data={dataBump}
-                colors={{ scheme: 'spectral' }}
+                colors={{ scheme: 'purpleRed_green' }}
                 lineWidth={3}
                 activeLineWidth={6}
                 inactiveLineWidth={3}

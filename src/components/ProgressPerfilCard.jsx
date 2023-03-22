@@ -29,7 +29,7 @@ const ProgressPerfilCard = ({ tasksCompleted = 10, totalTasks = 100 }) => {
                             />
                         </div>
                         <div className="flex flex-col justify-center ml-2">
-                            <span className="text-white">{userInfo.name}</span>
+                            <span className="text-white font-semibold">{userInfo.name}</span>
                             <span className="text-sm text-gray-500 dark:text-gray-300">
                                 Informatic Engineering
                             </span>

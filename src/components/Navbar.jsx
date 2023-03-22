@@ -10,44 +10,9 @@ import { useUser } from '../context/UserContext'
 
 const Navbar = () => {
 
-    const [isLogged, setIsLogged] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-
-    const { user, setUserToken } = useUser()
+    const { user, isLoading, isLogged } = useUser()
 
     const navigate = useRouter()
-
-    useEffect(() => {
-
-        const loadToken = async () => {
-            try {
-                if (user) {
-                    if (user?.email?.length > 1) {
-                        return setIsLogged(true)
-                    }
-                }
-
-
-                const res = await fetch('http://localhost:3000/api/auth/token')
-                const data = await res.json()
-                setUserToken(data)
-                if (data) {
-                    setIsLogged(true)
-                } else {
-                    setIsLogged(false)
-                }
-
-
-            } catch (err) {
-                console.log(err)
-            }
-            finally {
-                setIsLoading(false)
-            }
-        }
-        loadToken()
-    }, [])
-
 
     const handleLogout = async () => {
         const res = await axios.post('http://localhost:3000/api/auth/logout')
