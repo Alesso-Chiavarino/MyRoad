@@ -39,7 +39,7 @@ const CareerTable = () => {
                                                 className="block w-fit px-3 py-2 bg-[#171717] rounded-md"
                                             >
                                                 {/* {partial}° partial: <span className="font-semibold">{cal.value}</span> */}
-                                                <span className="font-semibold">{cal.value}</span>
+                                                <span className="font-semibold">{cal.name}: {cal.value}</span>
                                             </span>
                                         )
 

@@ -31,6 +31,9 @@ const careerSchema = new Schema({
                         type: Number,
                         required: true
                     },
+                    approved: {
+                        type: Boolean,
+                    },
                     califications: [
                         {
                             name: {

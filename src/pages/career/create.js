@@ -57,12 +57,8 @@ const create = () => {
                 subjects,
             });
 
-            //feo
             const newListSubjects = subjectsList?.map(sub => {
-                // console.log(sub.code)
-                // console.log(e.target.name)
                 if (sub.code === e.target.name) {
-                    console.log('entro')
                     return {
                         ...sub,
                         checked: true

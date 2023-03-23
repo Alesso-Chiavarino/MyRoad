@@ -46,11 +46,11 @@ const UserProvider = ({ children }) => {
     useEffect(() => {
         const loadUser = async () => {
             try {
-                // if (userInfo.name) return
-                const res = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
-                const data = await res.json()
-                // console.log(data)
-                setUserInfo(data)
+                if (user.email) {
+                    const res = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
+                    const data = await res.json()
+                    setUserInfo(data)
+                }
             } catch (err) {
                 //FIJARSE ACA
                 // console.log(err)

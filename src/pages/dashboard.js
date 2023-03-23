@@ -11,8 +11,13 @@ const dashboard = () => {
 
     const { career } = useCareer()
     const [dataPie, setDataPie] = useState([])
+    const [totalApproved, setTotalApproved] = useState(0)
+    const [totalSubjects, setTotalSubjects] = useState(0)
 
     useEffect(() => {
+        let totalSubjects = 0;
+        let totalApproved = 0;
+
         if (career[0]) {
             const data = career[0].semesters[0].subjects.map(sub => {
                 return {
@@ -23,8 +28,21 @@ const dashboard = () => {
                 }
             })
             setDataPie(data)
+
+            career[0].semesters.map(sem => {
+                sem.subjects.map(sub => {
+                    totalSubjects += 1;
+                    if (sub.approved) {
+                        totalApproved += 1;
+                    }
+                })
+            })
+
+            setTotalSubjects(totalSubjects)
+            setTotalApproved(totalApproved)
         }
     }, [career])
+
 
     // const [dataBump, setDataBump] = useState([])
 
@@ -184,9 +202,9 @@ const dashboard = () => {
             <div className='container mx-auto pb-10'>
                 <h1 className='text-4xl text-white font-bold my-5'>Overview</h1>
                 <div className='grid grid-cols-3 gap-20'>
-                    <ProgressPerfilCard />
-                    <ProgressPerfilCard />
-                    <ProgressPerfilCard />
+                    <ProgressPerfilCard totalApproved={totalApproved} totalSubjects={totalSubjects} />
+                    <ProgressPerfilCard totalApproved={totalApproved} totalSubjects={totalSubjects} />
+                    <ProgressPerfilCard totalApproved={totalApproved} totalSubjects={totalSubjects} />
                 </div>
                 <div className='my-10 items-center grid grid-cols-2 gap-10'>
                     <div className='bg-[#111111] rounded-xl p-5'>
@@ -194,7 +212,7 @@ const dashboard = () => {
                         <Pie dataPie={dataPie} />
                     </div>
                     <div className='bg-[#111111] rounded-xl p-5'>
-                        <span className='text-gray-50 font-semibold'>Recent Calcifications</span>
+                        <span className='text-gray-50 font-semibold'>Recent Califications</span>
                         <Bump dataBump={dataBump} />
                     </div>
                 </div>

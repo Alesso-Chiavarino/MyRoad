@@ -1,7 +1,7 @@
 import Career from '@/models/Career'
 
 const createCalification = async (req, res) => {
-    const { semester, calification, subject } = req.body;
+    const { semester, calification, subject, exam } = req.body;
     const { id } = req.query;
 
     const career = await Career.findById(id);
@@ -14,7 +14,7 @@ const createCalification = async (req, res) => {
                 if (sub.name === subject) {
                     sub.califications.push({
                         value: calification,
-                        name: subject,
+                        name: exam,
                         condition: calification >= 4 && 'aprobed' || 'reprobated'
                     })
                 }
