@@ -41,7 +41,7 @@ const UserProvider = ({ children }) => {
             }
         }
         loadToken()
-    }, [])
+    }, [user])
 
     useEffect(() => {
         const loadUser = async () => {
@@ -65,8 +65,12 @@ const UserProvider = ({ children }) => {
         setUser(value)
     }
 
+    const handleIsLoged = async (value) => {
+        setIsLogged(value)
+    }
+
     return (
-        <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged }}>
+        <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged, handleIsLoged }}>
             {children}
         </UserContext.Provider>
     )

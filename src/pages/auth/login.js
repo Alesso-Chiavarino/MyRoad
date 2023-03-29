@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Layout from '@/components/Layout'
-
 import LoginForm from '@/components/LoginForm'
+import { useUser } from '@/context/UserContext'
+
 
 const login = () => {
+
+    const { handleIsLoged } = useUser()
 
     const navigate = useRouter()
 
@@ -33,10 +36,12 @@ const login = () => {
                 console.log('error')
             }
 
-            return navigate.push('/')
-
         } catch (err) {
             console.log(err)
+        }
+        finally {
+            handleIsLoged(true)
+            return navigate.push('/')
         }
     }
 

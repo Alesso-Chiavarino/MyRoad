@@ -13,7 +13,7 @@ const dashboard = () => {
     const [dataPie, setDataPie] = useState([])
     const [totalApproved, setTotalApproved] = useState(0)
     const [totalSubjects, setTotalSubjects] = useState(0)
-    const [semester, setSemester] = useState(1)
+    const [semester, setSemester] = useState(0)
 
     useEffect(() => {
         let totalSubjects = 0;
@@ -234,7 +234,7 @@ const dashboard = () => {
                 <div className='bg-[#111111] rounded-xl'>
                     <CareerTable semester={semester} />
                 </div>
-                <CalificationForm />
+                {/* <CalificationForm /> */}
             </div>
         </Layout>
     )

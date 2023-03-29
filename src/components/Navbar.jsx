@@ -10,13 +10,14 @@ import { useUser } from '../context/UserContext'
 
 const Navbar = () => {
 
-    const { user, isLoading, isLogged } = useUser()
+    const { user, isLoading, isLogged, handleIsLoged } = useUser()
 
     const navigate = useRouter()
 
     const handleLogout = async () => {
         const res = await axios.post('http://localhost:3000/api/auth/logout')
         if (res.status === 200) {
+            handleIsLoged(false)
             navigate.push('/auth/login')
         }
     }
