@@ -22,16 +22,12 @@ const UserProvider = ({ children }) => {
                     }
                 }
 
-
                 const res = await fetch('http://localhost:3000/api/auth/token')
                 const data = await res.json()
-                setUserToken(data)
-                if (data) {
+                if (data.message !== 'Unauthorized') {
                     setIsLogged(true)
-                } else {
-                    setIsLogged(false)
+                    return setUserToken(data)
                 }
-
 
             } catch (err) {
                 console.log(err)
@@ -41,7 +37,7 @@ const UserProvider = ({ children }) => {
             }
         }
         loadToken()
-    }, [user])
+    }, [])
 
     useEffect(() => {
         const loadUser = async () => {

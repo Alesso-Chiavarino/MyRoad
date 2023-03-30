@@ -17,8 +17,8 @@ const Navbar = () => {
     const handleLogout = async () => {
         const res = await axios.post('http://localhost:3000/api/auth/logout')
         if (res.status === 200) {
-            handleIsLoged(false)
-            navigate.push('/auth/login')
+            location.href = '/auth/login'
+            // handleIsLoged(false) al pedo (creo)
         }
     }
 

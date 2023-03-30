@@ -5,6 +5,7 @@ import Layout from '@/components/Layout'
 import Pie from '@/components/Pie'
 import ProgressPerfilCard from '@/components/ProgressPerfilCard'
 import { useCareer } from '@/context/CareerContext'
+import { data } from 'autoprefixer'
 import { useEffect, useState } from 'react'
 
 const dashboard = () => {
@@ -13,7 +14,7 @@ const dashboard = () => {
     const [dataPie, setDataPie] = useState([])
     const [totalApproved, setTotalApproved] = useState(0)
     const [totalSubjects, setTotalSubjects] = useState(0)
-    const [semester, setSemester] = useState(0)
+    const [semester, setSemester] = useState(1)
 
     useEffect(() => {
         let totalSubjects = 0;
@@ -51,7 +52,6 @@ const dashboard = () => {
     }
 
 
-
     const [dataBump, setDataBump] = useState([])
 
     useEffect(() => {
@@ -84,121 +84,7 @@ const dashboard = () => {
         }
 
         setDataBump(bumpDataa);
-        console.log(bumpDataa)
     }, [career, semester]);
-
-
-    const dataBump2 = [
-        {
-            "id": "AM-1",
-            "data": [
-                {
-                    "x": '1º PARTIAL',
-                    "y": 2
-                },
-                {
-                    "x": '2º PARTIAL',
-                    "y": 4
-                },
-                {
-                    "x": '3º PARTIAL',
-                    "y": 8
-                },
-                {
-                    "x": 'FINAL',
-                    "y": 10
-                },
-            ]
-        },
-        {
-            "id": "LAB-1",
-            "data": [
-                {
-                    "x": '1º PARTIAL',
-                    "y": 8
-                },
-                {
-                    "x": '2º PARTIAL',
-                    "y": 1
-                },
-                {
-                    "x": '3º PARTIAL',
-                    "y": 10
-                },
-                {
-                    "x": 'FINAL',
-                    "y": 10
-                },
-            ]
-        },
-        {
-            "id": "A-1",
-            "data": [
-                {
-                    "x": '1º PARTIAL',
-                    "y": 9
-                },
-                {
-                    "x": '2º PARTIAL',
-                    "y": 10
-                },
-                {
-                    "x": '3º PARTIAL',
-                    "y": 9
-                },
-                {
-                    "x": 'FINAL',
-                    "y": 5
-                },
-            ]
-        },
-        {
-            "id": "IT-1",
-            "data": [
-                {
-                    "x": '1º PARTIAL',
-                    "y": 10
-                },
-                {
-                    "x": '2º PARTIAL',
-                    "y": 7
-                },
-                {
-                    "x": '3º PARTIAL',
-                    "y": 1
-                },
-                {
-                    "x": 'FINAL',
-                    "y": 7
-                },
-            ]
-        },
-        {
-            "id": "TD",
-            "data": [
-                {
-                    "x": '1º PARTIAL',
-                    "y": 2
-                },
-                {
-                    "x": '2º PARTIAL',
-                    "y": 8
-                },
-                {
-                    "x": '3º PARTIAL',
-                    "y": 10
-                },
-                {
-                    "x": 'FINAL',
-                    "y": 6
-                },
-            ]
-        },
-    ]
-
-    // console.log('DATA BUMP: ', dataBump)
-    // console.log(dataBump2)
-
 
     return (
         <Layout title='Dashboard'>
@@ -241,3 +127,120 @@ const dashboard = () => {
 }
 
 export default dashboard
+
+
+
+
+
+
+
+
+
+
+// const dataBump2 = [
+//         {
+//             "id": "AM-1",
+//             "data": [
+//                 {
+//                     "x": '1º PARTIAL',
+//                     "y": 2
+//                 },
+//                 {
+//                     "x": '2º PARTIAL',
+//                     "y": 4
+//                 },
+//                 {
+//                     "x": '3º PARTIAL',
+//                     "y": 8
+//                 },
+//                 {
+//                     "x": 'FINAL',
+//                     "y": 10
+//                 },
+//             ]
+//         },
+//         {
+//             "id": "LAB-1",
+//             "data": [
+//                 {
+//                     "x": '1º PARTIAL',
+//                     "y": 8
+//                 },
+//                 {
+//                     "x": '2º PARTIAL',
+//                     "y": 1
+//                 },
+//                 {
+//                     "x": '3º PARTIAL',
+//                     "y": 10
+//                 },
+//                 {
+//                     "x": 'FINAL',
+//                     "y": 10
+//                 },
+//             ]
+//         },
+//         {
+//             "id": "A-1",
+//             "data": [
+//                 {
+//                     "x": '1º PARTIAL',
+//                     "y": 9
+//                 },
+//                 {
+//                     "x": '2º PARTIAL',
+//                     "y": 10
+//                 },
+//                 {
+//                     "x": '3º PARTIAL',
+//                     "y": 9
+//                 },
+//                 {
+//                     "x": 'FINAL',
+//                     "y": 5
+//                 },
+//             ]
+//         },
+//         {
+//             "id": "IT-1",
+//             "data": [
+//                 {
+//                     "x": '1º PARTIAL',
+//                     "y": 10
+//                 },
+//                 {
+//                     "x": '2º PARTIAL',
+//                     "y": 7
+//                 },
+//                 {
+//                     "x": '3º PARTIAL',
+//                     "y": 1
+//                 },
+//                 {
+//                     "x": 'FINAL',
+//                     "y": 7
+//                 },
+//             ]
+//         },
+//         {
+//             "id": "TD",
+//             "data": [
+//                 {
+//                     "x": '1º PARTIAL',
+//                     "y": 2
+//                 },
+//                 {
+//                     "x": '2º PARTIAL',
+//                     "y": 8
+//                 },
+//                 {
+//                     "x": '3º PARTIAL',
+//                     "y": 10
+//                 },
+//                 {
+//                     "x": 'FINAL',
+//                     "y": 6
+//                 },
+//             ]
+//         },
+//     ]

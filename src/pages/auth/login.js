@@ -33,15 +33,14 @@ const login = () => {
             const res = await axios.post('/api/auth/login', credentials)
 
             if (!res.status === 200) {
-                console.log('error')
+                return console.log('error')
             }
+
+            navigate.push('/')
+            return handleIsLoged(true)
 
         } catch (err) {
             console.log(err)
-        }
-        finally {
-            handleIsLoged(true)
-            return navigate.push('/')
         }
     }
 
