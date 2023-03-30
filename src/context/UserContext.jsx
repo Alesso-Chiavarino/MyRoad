@@ -24,6 +24,7 @@ const UserProvider = ({ children }) => {
 
                 const res = await fetch('http://localhost:3000/api/auth/token')
                 const data = await res.json()
+                console.log(data)
                 if (data.message !== 'Unauthorized') {
                     setIsLogged(true)
                     return setUserToken(data)
