@@ -12,6 +12,8 @@ const ProgressPerfilCard = ({ totalSubjects, totalApproved }) => {
         setProgressBarWidth(progressPercent);
     }, [totalApproved, totalSubjects]);
 
+    // console.log(userInfo)
+
     return (
         <div className="relative w-full p-4 overflow-hidden shadow-lg rounded-xl bg-[#111111]">
             <div className="block w-full h-full">

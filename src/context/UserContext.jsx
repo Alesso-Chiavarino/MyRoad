@@ -24,14 +24,14 @@ const UserProvider = ({ children }) => {
 
                 const res = await fetch('http://localhost:3000/api/auth/token')
                 const data = await res.json()
-                console.log(data)
+                // console.log(data)
                 if (data.message !== 'Unauthorized') {
                     setIsLogged(true)
                     return setUserToken(data)
                 }
 
             } catch (err) {
-                console.log(err)
+                // console.log(err)
             }
             finally {
                 setIsLoading(false)
@@ -40,8 +40,17 @@ const UserProvider = ({ children }) => {
         loadToken()
     }, [])
 
+    const setUserToken = (value) => {
+        setUser(value)
+    }
+
+    const handleIsLoged = async (value) => {
+        setIsLogged(value)
+    }
+
     useEffect(() => {
         const loadUser = async () => {
+            console.log(user)
             try {
                 if (user.email) {
                     const res = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
@@ -58,13 +67,7 @@ const UserProvider = ({ children }) => {
 
     // console.log(userInfo)
 
-    const setUserToken = (value) => {
-        setUser(value)
-    }
 
-    const handleIsLoged = async (value) => {
-        setIsLogged(value)
-    }
 
     return (
         <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged, handleIsLoged }}>

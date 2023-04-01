@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Brand from './Brand'
 import { useUser } from '../context/UserContext'
+import AccountDropdown from './AccountDropdown'
 
 const Navbar = () => {
 
@@ -37,21 +38,30 @@ const Navbar = () => {
                 )
             } else {
                 return (
-                    <div className='flex gap-3 items-center'>
-                        <div className='flex gap-1 items-center font-bold text-[#B8BFC6] cursor-pointer px-3 py-1 transition-all duration-200 hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md' onClick={handleLogout}>
-                            <IoLogOut className='text-xl' />
-                            <button>Log out</button>
+                    <div>
+                        <div className='flex gap-3 items-center'>
+                            <img onClick={handleDropdownClick} src={`https://robohash.org/${user?.email}`} alt='user profile image' className={`cursor-pointer mx-auto object-cover border-[1px] ${show ? 'border-gray-100/70' : 'border-gray-100/50'} rounded-full h-11 w-11 z-40 hover:border-gray-100/70`} />
                         </div>
-                        <img src={`https://robohash.org/${user?.email}`} alt='user profile image' className='cursor-pointer mx-auto object-cover border-[1px] border-gray-100/50 rounded-full h-11 w-11' />
-                        {/* <MdAccountCircle className='text-2xl text-[#B8BFC6] cursor-pointer hover:text-white transition-all duration-200' /> */}
+                        {show && <AccountDropdown handleLogout={handleLogout} handleDropdownClick={handleDropdownClick} handleDropdownLeave={handleDropdownLeave} />}
                     </div>
+
                 )
             }
         }
     }
 
+    const [show, setShow] = useState(false);
+
+    const handleDropdownClick = () => {
+        setShow(!show)
+    }
+
+    const handleDropdownLeave = () => {
+        setShow(false)
+    }
+
     return (
-        <div className='bg-[#171717] w-full border-b-[0.1px] border-white/10'>
+        <div className='bg-[#171717] sticky top-0 w-full border-b-[0.1px] z-10 border-white/10'>
             <nav className='flex items-center py-3 justify-between mx-auto container'>
                 <div className='flex items-center gap-5'>
                     <Brand />
