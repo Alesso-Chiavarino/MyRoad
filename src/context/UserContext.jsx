@@ -6,11 +6,18 @@ export const useUser = () => useContext(UserContext)
 
 const UserProvider = ({ children }) => {
 
-
     const [user, setUser] = useState({})
     const [userInfo, setUserInfo] = useState({})
     const [isLogged, setIsLogged] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+
+    const setUserToken = (value) => {
+        setUser(value)
+    }
+
+    const handleIsLoged = async (value) => {
+        setIsLogged(value)
+    }
 
     useEffect(() => {
 
@@ -31,7 +38,7 @@ const UserProvider = ({ children }) => {
                 }
 
             } catch (err) {
-                // console.log(err)
+                console.log(err)
             }
             finally {
                 setIsLoading(false)
@@ -40,34 +47,22 @@ const UserProvider = ({ children }) => {
         loadToken()
     }, [])
 
-    const setUserToken = (value) => {
-        setUser(value)
-    }
-
-    const handleIsLoged = async (value) => {
-        setIsLogged(value)
-    }
-
     useEffect(() => {
         const loadUser = async () => {
             console.log(user)
             try {
-                if (user.email) {
+                if (user && user.email && !userInfo.email) {
                     const res = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
                     const data = await res.json()
                     setUserInfo(data)
                 }
             } catch (err) {
-                //FIJARSE ACA
-                // console.log(err)
+                console.log(err)
             }
         }
         loadUser()
-    }, [user])
-
-    // console.log(userInfo)
-
-
+    }, [user, userInfo])
+    
 
     return (
         <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged, handleIsLoged }}>
