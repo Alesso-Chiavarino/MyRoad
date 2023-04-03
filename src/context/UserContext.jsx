@@ -49,7 +49,7 @@ const UserProvider = ({ children }) => {
 
     useEffect(() => {
         const loadUser = async () => {
-            console.log(user)
+            // console.log(user)
             try {
                 if (user && user.email && !userInfo.email) {
                     const res = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)

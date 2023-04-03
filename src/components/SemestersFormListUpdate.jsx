@@ -1,19 +1,8 @@
 import { IoClose } from 'react-icons/io5'
 import { FaListAlt } from 'react-icons/fa'
 import { MdContentPasteOff } from 'react-icons/md'
-import { useCareer } from '@/context/CareerContext'
-import { useEffect } from 'react'
 
-const SemestersFormListUpdate = ({ semesterListStore, deleteSemester, handleSemesterListStore, career }) => {
-
-    useEffect(() => {
-        const loadSemesters = async () => {
-            if (career[0]) {
-                handleSemesterListStore(career[0].semesters)
-            }
-        }
-        loadSemesters()
-    }, [career])
+const SemestersFormListUpdate = ({ semesterListStore, deleteSemester }) => {
 
     return (
         <div className="bg-[#111111] w-[300px] p-10 rounded-md text-white ">

@@ -1,5 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { useUser } from './UserContext'
+import axios from 'axios'
 
 const CareerContext = createContext()
 
@@ -28,10 +29,13 @@ const CareerProvider = ({ children }) => {
 
     }, [isLogged])
 
-    // console.log(career)
+    const deleteCareer = async () => {
+        const res = await axios.delete(`http://localhost:3000/api/career/delete?id=${career[0]._id}`)
+        console.log(res)
+    }
 
     return (
-        <CareerContext.Provider value={{ career }}>
+        <CareerContext.Provider value={{ career, deleteCareer }}>
             {children}
         </CareerContext.Provider>
     )

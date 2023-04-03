@@ -26,11 +26,32 @@ const create = () => {
         subjects: [],
     });
 
+    const [careerName, setCareerName] = useState('')
+
+    const [semesterListStore, setSemesterListStore] = useState([])
+
+    useEffect(() => {
+        const loadSemesters = async () => {
+            if (career[0]) {
+                handleSemesterListStore(career[0].semesters)
+            }
+        }
+        loadSemesters()
+        setOriginalCareer({
+            ...originalCareer,
+            name: career[0]?.name,
+            description: career[0]?.description,
+            image: career[0]?.image,
+            salary: career[0]?.salary,
+            semesters: semesterListStore,
+        })
+    }, [career, semesterListStore])
+
     const handleCareer = async (e) => {
         setOriginalCareer({
             ...originalCareer,
             [e.target.name]: e.target.value,
-            semesters: [semester],
+            semesters: semesterListStore,
         });
     };
 
@@ -48,7 +69,6 @@ const create = () => {
 
     const handleSubject = async (e) => {
         if (e.target.checked) {
-            console.log(e.target.value)
             setSubjects([
                 ...subjects,
                 {
@@ -98,13 +118,7 @@ const create = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put(`/api/career/update?id=${career[0]?._id}`, {
-                name: originalCareer.name,
-                description: originalCareer.description,
-                image: originalCareer.image,
-                salary: originalCareer.salary,
-                semesters: originalCareer.semesters
-            });
+            const res = await axios.put(`/api/career/update?id=${career[0]?._id}`, originalCareer);
             console.log(res);
         } catch (err) {
             console.log(err);
@@ -127,12 +141,6 @@ const create = () => {
     const handleCareersSubjectsForm = (e) => {
         setCareerName(e.target.value)
     }
-
-
-
-    const [careerName, setCareerName] = useState('')
-
-    const [semesterListStore, setSemesterListStore] = useState([])
 
     const handleSemesterStore = (e) => {
         e.preventDefault()
@@ -188,7 +196,6 @@ const create = () => {
 
         }
     }, [semester.number, careerName])
-
 
     return (
         <Layout title='Update Career'>
