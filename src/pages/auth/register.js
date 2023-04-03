@@ -43,7 +43,7 @@ const register = () => {
     }
 
     return (
-        <Layout title={'Register'}>
+        <Layout title='Register'>
             <div className='flex justify-center mt-20'>
                 <RegisterForm showPassword={showPassword} handleChange={handleChange} handleSubmit={handleSubmit} inputType={inputType} />
             </div>

@@ -177,7 +177,7 @@ const create = () => {
 
 
     return (
-        <Layout title={'Create Career'}>
+        <Layout title='Create Career'>
             <section className="container mx-auto flex justify-center mt-20 gap-20">
                 <CareerForm handleSubmit={handleSubmit} handleCareer={handleCareer} handleCareersSubjectsForm={handleCareersSubjectsForm} subjectsListRender={subjectsListRender} handleSemester={handleSemester} semester={semester} />
                 <SemestersFormList semesterListStore={semesterListStore} deleteSemester={deleteSemester} />

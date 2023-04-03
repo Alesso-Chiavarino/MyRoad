@@ -6,7 +6,7 @@ import { MdArrowForwardIos } from 'react-icons/md'
 const Home = () => {
 
   return (
-    <Layout title={'Home'}>
+    <Layout title='Home'>
       <header>
         <div className="container mx-auto grid grid-cols-2 items-center h-[70vh]">
           <div className="w-full flex flex-col gap-5">

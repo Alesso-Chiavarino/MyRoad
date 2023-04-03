@@ -49,7 +49,7 @@ const login = () => {
     }
 
     return (
-        <Layout title={'Login'}>
+        <Layout title='Login'>
             <div className='flex justify-center mt-20'>
                 <LoginForm handleChange={handleChange} handleSubmit={handleSubmit} inputType={inputType} showPassword={showPassword} />
             </div >

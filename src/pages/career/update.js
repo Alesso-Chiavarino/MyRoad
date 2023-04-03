@@ -191,10 +191,10 @@ const create = () => {
 
 
     return (
-        <Layout title={'Create Career'}>
+        <Layout title='Update Career'>
             <section className="container mx-auto flex justify-center mt-20 gap-20">
                 <CareerFormUpdate handleSubmit={handleSubmit} handleCareer={handleCareer} handleCareersSubjectsForm={handleCareersSubjectsForm} subjectsListRender={subjectsListRender} handleSemester={handleSemester} semester={semester} />
-                <SemestersFormListUpdate handleSemesterListStore={handleSemesterListStore} semesterListStore={semesterListStore} deleteSemester={deleteSemester} />
+                <SemestersFormListUpdate career={career} handleSemesterListStore={handleSemesterListStore} semesterListStore={semesterListStore} deleteSemester={deleteSemester} />
             </section>
         </Layout>
     );

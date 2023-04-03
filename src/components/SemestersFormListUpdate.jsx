@@ -4,17 +4,16 @@ import { MdContentPasteOff } from 'react-icons/md'
 import { useCareer } from '@/context/CareerContext'
 import { useEffect } from 'react'
 
-const SemestersFormListUpdate = ({ semesterListStore, deleteSemester, handleSemesterListStore }) => {
-
-    const { career } = useCareer()
+const SemestersFormListUpdate = ({ semesterListStore, deleteSemester, handleSemesterListStore, career }) => {
 
     useEffect(() => {
         const loadSemesters = async () => {
-            handleSemesterListStore(career[0]?.semesters)
+            if (career[0]) {
+                handleSemesterListStore(career[0].semesters)
+            }
         }
         loadSemesters()
     }, [career])
-
 
     return (
         <div className="bg-[#111111] w-[300px] p-10 rounded-md text-white ">
