@@ -5,9 +5,13 @@ import SemestersFormListUpdate from "@/components/SemestersFormListUpdate";
 import InputsSubjectList from "@/components/InputsSubjectList";
 import careerSubjects from "@/data/subjects";
 import CareerFormUpdate from "@/components/CareerFormUpdate";
+import { useCareer } from "@/context/CareerContext";
 
 const create = () => {
-    const [career, setCareer] = useState({
+
+    const { career } = useCareer()
+
+    const [originalCareer, setOriginalCareer] = useState({
         name: "",
         description: "",
         image: "",
@@ -23,8 +27,8 @@ const create = () => {
     });
 
     const handleCareer = async (e) => {
-        setCareer({
-            ...career,
+        setOriginalCareer({
+            ...originalCareer,
             [e.target.name]: e.target.value,
             semesters: [semester],
         });
@@ -36,8 +40,8 @@ const create = () => {
             [e.target.name]: e.target.value,
             subjects
         });
-        setCareer({
-            ...career,
+        setOriginalCareer({
+            ...originalCareer,
             semesters: [semester],
         });
     }
@@ -94,7 +98,13 @@ const create = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("/api/career/create", career);
+            const res = await axios.put(`/api/career/update?id=${career[0]?._id}`, {
+                name: originalCareer.name,
+                description: originalCareer.description,
+                image: originalCareer.image,
+                salary: originalCareer.salary,
+                semesters: originalCareer.semesters
+            });
             console.log(res);
         } catch (err) {
             console.log(err);
@@ -108,8 +118,8 @@ const create = () => {
     }, [subjects])
 
     useEffect(() => {
-        setCareer({
-            ...career,
+        setOriginalCareer({
+            ...originalCareer,
             semesters: semesterListStore,
         });
     }, [semester])
@@ -135,7 +145,7 @@ const create = () => {
             }
         ])
 
-        const newListSubjects = subjectsList.map(subject => {
+        const newListSubjects = subjectsList?.map(subject => {
             return {
                 ...subject,
                 checked: false
@@ -162,12 +172,6 @@ const create = () => {
     const handleSemesterListStore = (value) => {
         setSemesterListStore(value)
     }
-
-
-    // const deleteSemesterFromCareer = (semesterNumber) => {
-    //     const newSemesterListStore = semesterListStore.filter(semester => semester.number !== semesterNumber)
-    //     setSemesterListStore(newSemesterListStore)
-    // }
 
     useEffect(() => {
         //store semester from the menor to the mayor

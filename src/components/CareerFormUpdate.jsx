@@ -1,4 +1,4 @@
-import { IoIosCreate } from 'react-icons/io'
+import { RxUpdate } from 'react-icons/rx'
 import { useCareer } from '@/context/CareerContext'
 
 const CareerFormUpdate = ({ handleSubmit, handleCareer, handleCareersSubjectsForm, handleSemester, subjectsListRender, semester }) => {
@@ -43,7 +43,7 @@ const CareerFormUpdate = ({ handleSubmit, handleCareer, handleCareersSubjectsFor
                     </div>
                 </div>
 
-                <button className="bg-white font-bold w-full rounded-md py-2 mt-5 flex items-center justify-center"><IoIosCreate className='text-xl' />Update</button>
+                <button className="bg-white font-bold w-full rounded-md py-2 mt-5 flex items-center justify-center gap-1"><RxUpdate className='text-xl' />Update</button>
             </form>
         </div>
     )

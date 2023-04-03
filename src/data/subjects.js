@@ -74,7 +74,47 @@ const careerSubjects = [
             approved: false
           }
         ]
-      }
+      },
+      {
+        number: 3,
+        subjects: [
+          {
+            code: "AM-3",
+            name: "Analisis Matematico 3",
+            checked: false,
+            duration: 7,
+            approved: false
+          },
+          {
+            code: "LAB-3",
+            name: "Laboratorio 3",
+            checked: false,
+            duration: 2,
+            approved: false
+          },
+          {
+            code: "SO",
+            name: "Sistemas Operativos",
+            checked: false,
+            duration: 5,
+            approved: false
+          },
+          {
+            code: "IT-3",
+            name: "Ingles Tecnico 3",
+            checked: false,
+            duration: 3,
+            approved: false
+          },
+          {
+            code: "F-1",
+            name: "Fisica 1",
+            checked: false,
+            duration: 4,
+            approved: false
+          }
+        ]
+      },
     ]
 
   }
