@@ -19,7 +19,7 @@ const option = () => {
 
     const optionsHashmap = {
         profile: <Profile />,
-        account: <Account />,
+        account: <Account user={user} />,
         career: <Career />
     }
 
@@ -45,7 +45,7 @@ const option = () => {
                             <span className='text-gray-300'>Your personal account</span>
                         </div>
                     </div>
-                    <a href="#" className='border-[1px] border-gray-300 rounded-md px-2 py-1 text-gray-300 text-sm'>Go to your personal profile</a>
+                    <a href="#" className='border-[1px] border-gray-300 rounded-md px-2 py-1 text-gray-300 text-sm hover:bg-white hover:border-transparent hover:text-black'>Go to your personal profile</a>
                 </div>
                 <div className='flex gap-20'>
                     <aside className='w-2/5 h-fit flex flex-col gap-2 text-gray-300'>
