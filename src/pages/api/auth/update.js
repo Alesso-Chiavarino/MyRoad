@@ -8,7 +8,7 @@ const updateAccount = async (req, res) => {
 
     const cookie = req.cookies;
 
-    const { password, email } = req.body
+    const { originalPassword, password, email } = req.body
 
     try {
         const token = jwt.verify(cookie.token, 'secret')
@@ -22,13 +22,17 @@ const updateAccount = async (req, res) => {
             return res.status(200).send(updatedUser)
         }
 
-        if (password) {
-            const updatedUser = await User.findOneAndUpdate({ password: token.password }, { password }, { new: true })
+        if (password && originalPassword) {
+            if (originalPassword !== token.password) {
+                return res.send({ message: 'passwords do not match' })
+            }
+            const updatedUser = await User.findOneAndUpdate({ email: token.email }, { password }, { new: true })
+            console.log(updatedUser)
             return res.status(200).send(updatedUser)
         }
 
         return res.send({ message: 'cannot update' })
-        
+
     } catch (err) {
         console.log(err)
     }

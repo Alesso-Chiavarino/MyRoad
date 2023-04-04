@@ -19,7 +19,7 @@ const option = () => {
 
     const optionsHashmap = {
         profile: <Profile />,
-        account: <Account user={user} />,
+        account: <Account user={user} userInfo={userInfo} />,
         career: <Career />
     }
 
