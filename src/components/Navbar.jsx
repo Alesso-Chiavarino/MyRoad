@@ -11,17 +11,9 @@ import AccountDropdown from './AccountDropdown'
 
 const Navbar = () => {
 
-    const { user, isLoading, isLogged, handleIsLoged } = useUser()
+    const { user, isLoading, isLogged, handleIsLoged, handleLogout } = useUser()
 
     const navigate = useRouter()
-
-    const handleLogout = async () => {
-        const res = await axios.post('http://localhost:3000/api/auth/logout')
-        if (res.status === 200) {
-            location.href = '/auth/login'
-            // handleIsLoged(false) al pedo (creo)
-        }
-    }
 
 
     const handleAuthButtons = () => {

@@ -1,4 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react'
+import axios from 'axios'
 
 const UserContext = createContext()
 
@@ -17,6 +18,14 @@ const UserProvider = ({ children }) => {
 
     const handleIsLoged = async (value) => {
         setIsLogged(value)
+    }
+
+    const handleLogout = async () => {
+        const res = await axios.post('http://localhost:3000/api/auth/logout')
+        if (res.status === 200) {
+            location.href = '/auth/login'
+            // handleIsLoged(false) al pedo (creo)
+        }
     }
 
     useEffect(() => {
@@ -65,7 +74,7 @@ const UserProvider = ({ children }) => {
     
 
     return (
-        <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged, handleIsLoged }}>
+        <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged, handleIsLoged, handleLogout }}>
             {children}
         </UserContext.Provider>
     )

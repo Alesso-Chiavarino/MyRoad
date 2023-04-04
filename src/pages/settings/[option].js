@@ -13,13 +13,13 @@ const option = () => {
 
     const router = useRouter()
 
-    const { user, userInfo } = useUser()
+    const { user, userInfo, handleLogout } = useUser()
 
     const { option } = router.query
 
     const optionsHashmap = {
         profile: <Profile />,
-        account: <Account user={user} userInfo={userInfo} />,
+        account: <Account user={user} userInfo={userInfo} handleLogout={handleLogout} />,
         career: <Career />
     }
 
