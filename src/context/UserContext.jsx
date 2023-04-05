@@ -11,6 +11,7 @@ const UserProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState({})
     const [isLogged, setIsLogged] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [activateEffect, setActivateEffect] = useState(false)
 
     const setUserToken = (value) => {
         setUser(value)
@@ -26,6 +27,10 @@ const UserProvider = ({ children }) => {
             location.href = '/auth/login'
             // handleIsLoged(false) al pedo (creo)
         }
+    }
+
+    const handleActivateEffect = () => {
+        setActivateEffect(!activateEffect)
     }
 
     useEffect(() => {
@@ -51,30 +56,19 @@ const UserProvider = ({ children }) => {
             }
             finally {
                 setIsLoading(false)
+                if (isLogged) {
+                    const res2 = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
+                    const data2 = await res2.json()
+                    setUserInfo(data2)
+                }
             }
         }
         loadToken()
-    }, [])
+    }, [user, isLogged, activateEffect])
 
-    useEffect(() => {
-        const loadUser = async () => {
-            // console.log(user)
-            try {
-                if (user && user.email && !userInfo.email) {
-                    const res = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
-                    const data = await res.json()
-                    setUserInfo(data)
-                }
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        loadUser()
-    }, [user, userInfo])
-    
 
     return (
-        <UserContext.Provider value={{ user, userInfo, setUserToken, isLoading, isLogged, handleIsLoged, handleLogout }}>
+        <UserContext.Provider value={{ user, userInfo, activateEffect, setUserToken, isLoading, isLogged, handleIsLoged, handleLogout, handleActivateEffect }}>
             {children}
         </UserContext.Provider>
     )

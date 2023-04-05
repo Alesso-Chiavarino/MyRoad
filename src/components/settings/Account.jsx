@@ -1,12 +1,13 @@
 import axios from 'axios'
 import { useState } from 'react'
 import ConfirmModal from '../ConfirmModal'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
+import { renderToast } from '@/utils/toast'
 import 'react-toastify/dist/ReactToastify.css'
 
 const Account = ({ user, userInfo, handleLogout }) => {
 
-  // console.log(userInfo)
+  console.log(userInfo)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -45,20 +46,7 @@ const Account = ({ user, userInfo, handleLogout }) => {
         console.log(err)
       }
       finally {
-        toast(`Email changed successfully, redirecting...`, {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        setTimeout(() => {
-          window.location.href = '/auth/login'
-          handleLogout()
-        }, 3000)
+        renderToast(`Email changed successfully, redirecting...`)
       }
     } else {
       try {
@@ -68,16 +56,7 @@ const Account = ({ user, userInfo, handleLogout }) => {
       catch (err) { console.log(err) }
       finally {
         closeModal()
-        toast(`Password changed successfully`, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        renderToast(`Password changed successfully`)
       }
     }
   }
