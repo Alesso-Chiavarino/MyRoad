@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import ConfirmModal from '../ConfirmModal'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Account = ({ user, userInfo, handleLogout }) => {
 
@@ -40,13 +41,13 @@ const Account = ({ user, userInfo, handleLogout }) => {
         const res = await axios.put('/api/auth/update', { email })
         return console.log(res)
       }
-      catch(err) {
+      catch (err) {
         console.log(err)
       }
       finally {
         toast(`Email changed successfully, redirecting...`, {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -57,7 +58,7 @@ const Account = ({ user, userInfo, handleLogout }) => {
         setTimeout(() => {
           window.location.href = '/auth/login'
           handleLogout()
-        }, 5000)
+        }, 3000)
       }
     } else {
       try {
@@ -116,7 +117,6 @@ const Account = ({ user, userInfo, handleLogout }) => {
           <input onChange={handleOriginalPassword} name='originalPassword' placeholder='Type your original password' type="password" className='border-[1px] border-gray-300 w-full rounded-md px-2 py-1 text-gray-300 text-sm bg-transparent font-bold outline-none' />
           <button className='border-[1px] border-gray-300/50 bg-[#111111] w-full rounded-md px-2  mt-2 py-1 text-red-300 text-sm font-bold hover:bg-red-500 hover:border-transparent hover:text-white'>I understand the consequences, change the password</button>
         </form>
-
       </ConfirmModal>
       <ToastContainer />
     </>
