@@ -48,7 +48,7 @@ const option = () => {
                     <a href="#" className='border-[1px] border-gray-300 rounded-md px-2 py-1 text-gray-300 text-sm hover:bg-white hover:border-transparent hover:text-black'>Go to your personal profile</a>
                 </div>
                 <div className='flex gap-20'>
-                    <aside className='w-2/5 h-fit flex flex-col gap-2 text-gray-300'>
+                    <aside className='w-2/5 h-fit flex flex-col gap-1 text-gray-300'>
                         <Link href="/settings/profile" className={`flex gap-2 items-center hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md px-2 py-1 ${option === 'profile' && 'bg-[#B8BFC6] bg-opacity-10 text-white'}`}> <MdAccountCircle />Profile</Link>
 
                         <Link href="/settings/account" className={`flex gap-2 items-center hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white rounded-md px-2 py-1 ${option === 'account' && 'bg-[#B8BFC6] bg-opacity-10 text-white'}`}><MdSettings />Account</Link>

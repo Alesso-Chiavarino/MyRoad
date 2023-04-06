@@ -70,7 +70,7 @@ const UserProvider = ({ children }) => {
             }
         }
         loadUserInfo()
-    }, [isLogged, user])
+    }, [isLogged, user, activateEffect])
 
 
     return (

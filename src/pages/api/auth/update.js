@@ -8,7 +8,7 @@ const updateAccount = async (req, res) => {
 
     const cookie = req.cookies;
 
-    const { originalPassword, password, email, name } = req.body
+    const { originalPassword, password, email, name, bio } = req.body
 
     try {
         const token = jwt.verify(cookie.token, 'secret')
@@ -31,9 +31,18 @@ const updateAccount = async (req, res) => {
             return res.status(200).send(updatedUser)
         }
 
-        if (name) {
-            const updatedUser = await User.findOneAndUpdate({ email: token.email }, { name }, { new: true })
-            return res.status(200).send(updatedUser)
+        //profile possible changes
+        if (name || bio) {
+            if (bio) {
+                const updatedUser = await User.findOneAndUpdate({ email: token.email }, { bio }, { new: true })
+                console.log(updatedUser)
+            }
+
+            if (name) {
+                const updatedUser = await User.findOneAndUpdate({ email: token.email }, { name }, { new: true })
+                console.log(updatedUser)
+            }
+            return res.status(200).send({ message: 'updated' })
         }
 
         return res.send({ message: 'cannot update' })

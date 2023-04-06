@@ -7,16 +7,19 @@ const register = async (req, res) => {
 
     try {
 
-        if(!email || !password || !name) {
+        if (!email || !password || !name) {
             return res.status(400).send('Missing fields')
         }
 
         const avatar_url = `https://robohash.org/${email}`
 
+        const bio = `Hi, I'm ${name}!`
+
         const user = await User.create({
             email,
             password,
             avatar_url,
+            bio,
             name
         })
 
