@@ -56,15 +56,21 @@ const UserProvider = ({ children }) => {
             }
             finally {
                 setIsLoading(false)
-                if (isLogged) {
-                    const res2 = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
-                    const data2 = await res2.json()
-                    setUserInfo(data2)
-                }
             }
         }
         loadToken()
-    }, [user, isLogged, activateEffect])
+    }, [activateEffect, isLoading, isLogged])
+
+    useEffect(() => {
+        const loadUserInfo = async () => {
+            if (isLogged) {
+                const res2 = await fetch(`http://localhost:3000/api/user/get?email=${user.email}`)
+                const data2 = await res2.json()
+                setUserInfo(data2)
+            }
+        }
+        loadUserInfo()
+    }, [isLogged, user])
 
 
     return (

@@ -19,7 +19,7 @@ const ProgressPerfilCard = ({ totalSubjects, totalApproved }) => {
                     <div className="relative block">
                         <img
                             alt="profile"
-                            src={`https://robohash.org/${user?.email}`}
+                            src={userInfo.avatar_url}
                             className="mx-auto object-cover rounded-full h-10 w-10 "
                         />
                     </div>

@@ -6,6 +6,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    avatar_url: {
+        type: String,
+    },
+    bio: {
+        type: String,
+    },
     email: {
         type: String,
         required: true,
