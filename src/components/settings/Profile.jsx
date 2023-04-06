@@ -17,16 +17,36 @@ const Profile = ({ userInfo, handleActivateEffect, activateEffect }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      const res = await axios.put('/api/auth/update', { name })
-      console.log(res)
-    }
-    catch (err) {
-      console.log(err)
-    }
-    finally {
-      renderToast(`Name changed successfully`)
-      handleActivateEffect(!activateEffect)
+    if (e.target[0].value !== userInfo.name) {
+      try {
+        const res = await axios.put('/api/auth/update', { name })
+        console.log(res)
+      }
+      catch (err) {
+        console.log(err)
+      }
+      finally {
+        renderToast(`Name changed successfully`)
+        handleActivateEffect(!activateEffect)
+      }
+    } else {
+      try {
+        setIsLoading(true)
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('upload_preset', 'myroad')
+        const res = await axios.post('https://api.cloudinary.com/v1_1/dotaebdx8/image/upload', formData)
+        console.log(res.data)
+        setImage(res.data)
+      }
+      catch (err) {
+        console.log(err)
+      }
+      finally {
+        setIsLoading(false)
+        renderToast(`Image changed successfully`)
+        handleActivateEffect(!activateEffect)
+      }
     }
   }
 
@@ -34,25 +54,11 @@ const Profile = ({ userInfo, handleActivateEffect, activateEffect }) => {
     setFile(e.target.files[0])
   }
 
-  const updateImage = async (e) => {
-    e.preventDefault()
-    try {
-      setIsLoading(true)
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('upload_preset', 'myroad')
-      const res = await axios.post('https://api.cloudinary.com/v1_1/dotaebdx8/image/upload', formData)
-      console.log(res.data)
-      setImage(res.data)
-    }
-    catch (err) {
-      console.log(err)
-    }
-    finally {
-      setIsLoading(false)
-    }
+  // const updateImage = async (e) => {
+  //   e.preventDefault()
 
-  }
+
+  // }
 
   useEffect(() => {
     const postImage = async () => {
@@ -86,11 +92,15 @@ const Profile = ({ userInfo, handleActivateEffect, activateEffect }) => {
           <div>
             <div className='flex flex-col gap-3'>
               <label className="text-sm font-bold" htmlFor="name">Name</label>
-              <form onSubmit={handleSubmit} className='flex gap-3' action="">
-                <input defaultValue={userInfo?.name} onChange={handleName} type="text" name='name' className='border-[1px] border-gray-300 rounded-md px-4 py-2 text-gray-300 text-sm w-2/5 bg-transparent font-bold outline-none' placeholder='Enter your new email' />
-                <button className='border-[1px] border-gray-300 rounded-md px-4 py-2 text-gray-300 text-sm w-fit font-bold hover:bg-white hover:border-transparent hover:text-black'>Save</button>
+              <form onSubmit={handleSubmit} className='flex flex-col gap-3' action="">
+                <div>
+                  <input defaultValue={userInfo?.name} onChange={handleName} type="text" name='name' className='border-[1px] border-gray-300 rounded-md px-4 py-2 text-gray-300 text-sm w-full bg-transparent font-bold outline-none' placeholder='Enter your new email' />
+                  <span className="text-sm">Your name may appear around MyRoad anywhere. You <b>can change it</b> at any time.</span>
+                </div>
+                <input className="collapse" ref={inputFileRef} onChange={handleFile} type="file" name="file" />
+                <button className='border-[1px] border-gray-300 rounded-md px-4 py-2 text-gray-300 text-sm w-fit font-bold hover:bg-white hover:border-transparent hover:text-black'>Update profile</button>
               </form>
-              <span className="text-sm">Your name may appear around MyRoad anywhere. You <b>can change it</b> at any time.</span>
+
             </div>
           </div>
           <div>
@@ -100,10 +110,10 @@ const Profile = ({ userInfo, handleActivateEffect, activateEffect }) => {
                 <img onClick={hanldeImageClick} className="w-full h-full bg-cover cursor-pointer" src={userInfo.avatar_url} alt={userInfo.name} />
               </div>
             </div>
-            <form className="collapse" onSubmit={updateImage}>
-              <input ref={inputFileRef} onChange={handleFile} type="file" name="file" />
-              <button>Submit</button>
-            </form>
+            {/* <form className="collapse" onSubmit={updateImage}> */}
+
+            {/* <button>Submit</button> */}
+            {/* </form> */}
           </div>
         </div>
       </div>
