@@ -32,7 +32,7 @@ const Navbar = () => {
                 return (
                     <div>
                         <div className='flex gap-3 items-center'>
-                            <img onClick={handleDropdownClick} src={userInfo.avatar_url} alt='user profile image' className={`cursor-pointer mx-auto object-cover border-[1px] ${show ? 'border-gray-100/70' : 'border-gray-100/50'} rounded-full h-11 w-11 z-40 hover:border-gray-100/70`} />
+                            <img onClick={handleDropdownClick} src={userInfo?.avatar_url?.url} alt='user profile image' className={`cursor-pointer mx-auto object-cover border-[1px] ${show ? 'border-gray-100/70' : 'border-gray-100/50'} rounded-full h-11 w-11 z-40 hover:border-gray-100/70`} />
                         </div>
                         {show && <AccountDropdown handleLogout={handleLogout} handleDropdownClick={handleDropdownClick} handleDropdownLeave={handleDropdownLeave} />}
                     </div>

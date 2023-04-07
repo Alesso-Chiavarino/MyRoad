@@ -17,8 +17,8 @@ export const uploadImage = async (filePath) => {
     })
 }
 
-export const deleteImage = async (image_id) => {
-    return await cloudinary.uploader.destroy(image_id)
+export const deleteImage = async (public_id) => {
+    return await cloudinary.uploader.destroy(public_id)
 }
 
 

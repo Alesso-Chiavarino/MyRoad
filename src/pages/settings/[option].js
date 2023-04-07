@@ -39,7 +39,7 @@ const option = () => {
             <section className='container mx-auto text-white'>
                 <div className='flex justify-between items-center my-10'>
                     <div className='flex gap-2 w-fit items-center'>
-                        <img src={userInfo.avatar_url} alt='user profile image' className={`cursor-pointer mx-auto object-cover border-[1px] border-gray-100/70' rounded-full h-11 w-11 z-40`} />
+                        <img src={userInfo?.avatar_url?.url} alt='user profile image' className={`cursor-pointer mx-auto object-cover border-[1px] border-gray-100/70' rounded-full h-11 w-11 z-40`} />
                         <div className='flex flex-col'>
                             <a href="#" className='font-bold text-lg'>{userInfo.name}</a>
                             <span className='text-gray-300'>Your personal account</span>

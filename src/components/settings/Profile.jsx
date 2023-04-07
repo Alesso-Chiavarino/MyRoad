@@ -137,7 +137,7 @@ const Profile = ({ userInfo, handleActivateEffect, activateEffect }) => {
             <div>
               <label className="text-sm font-bold block mb-2" htmlFor="image">Profile picture</label>
               <div onMouseOver={handleImageOver} className="w-48 h-48 rounded-full overflow-hidden border-[1px] border-[#B8BFC6] relative cursor-pointer">
-                <img onClick={hanldeImageClick} className={`w-full h-full object-cover bg-center cursor-pointer ${isOver && 'opacity-30'}`} src={userInfo.avatar_url} alt={userInfo.name} />
+                <img onClick={hanldeImageClick} className={`w-full h-full object-cover bg-center cursor-pointer ${isOver && 'opacity-30'}`} src={userInfo?.avatar_url?.url} alt={userInfo.name} />
                 {isOver && <div onMouseOut={handleImageOut} className='absolute top-0 left-0 flex-col gap-2 w-full h-full bg-black bg-opacity-50 flex items-center justify-center' onClick={hanldeImageClick}>
                   <span className="font-bold">Upload a photo</span>
                   <FiUpload className="text-2xl " />

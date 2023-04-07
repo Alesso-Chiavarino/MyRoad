@@ -1,25 +1,33 @@
 import { model, Schema, models } from "mongoose";
 
-//create user model
 const userSchema = new Schema({
     name: {
         type: String,
         required: true,
+        trim: true,
     },
     avatar_url: {
-        type: String,
+        url: {
+            type: String
+        },
+        public_id: {
+            type: String
+        }
     },
     bio: {
         type: String,
+        trim: true,
     },
     email: {
         type: String,
         required: true,
         unique: true,
+        trim: true,
     },
     password: {
         type: String,
         required: true,
+        trim: true,
     },
     careers: [
         {

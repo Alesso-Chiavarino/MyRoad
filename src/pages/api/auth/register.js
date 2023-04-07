@@ -11,7 +11,10 @@ const register = async (req, res) => {
             return res.status(400).send('Missing fields')
         }
 
-        const avatar_url = `https://robohash.org/${email}`
+        const avatar_url = {
+            url: `https://robohash.org/${email}`,
+            public_id: 'default'
+        }
 
         const bio = `Hi, I'm ${name}!`
 

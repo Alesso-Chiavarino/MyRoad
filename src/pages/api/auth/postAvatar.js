@@ -20,9 +20,26 @@ const uploadAvatar = async (req, res) => {
         return res.status(400).send('No image found')
     }
 
-    const updatedUser = await User.findOneAndUpdate({ email: token.email }, { avatar_url: image.secure_url }, { new: true })
+    try {
+        const updatedUser = await User.findOneAndUpdate({ email: token.email }, {
+            avatar_url: {
+                url: image.secure_url,
+                public_id: image.public_id
+            }
+        })
 
-    return res.status(200).send(updatedUser)
+        if (updatedUser?.avatar_url?.public_id !== 'default') {
+            await deleteImage(updatedUser.avatar_url.public_id)
+        }
+    }
+    catch (err) {
+        console.log(err)
+        return res.status(400).send('Error updating user avatar')
+    }
+    finally {
+        return res.status(200).send({ message: 'Avatar updated successfully' })
+    }
+
 
 
 }

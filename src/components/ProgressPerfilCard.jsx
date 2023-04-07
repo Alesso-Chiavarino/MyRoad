@@ -19,7 +19,7 @@ const ProgressPerfilCard = ({ totalSubjects, totalApproved, career }) => {
                     <div className="relative block">
                         <img
                             alt="profile"
-                            src={userInfo.avatar_url}
+                            src={userInfo?.avatar_url?.url}
                             className="mx-auto object-cover rounded-full h-10 w-10 "
                         />
                     </div>
