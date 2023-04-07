@@ -103,9 +103,9 @@ const dashboard = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-20'>
-                    <ProgressPerfilCard totalApproved={totalApproved} totalSubjects={totalSubjects} />
-                    <ProgressPerfilCard totalApproved={totalApproved} totalSubjects={totalSubjects} />
-                    <ProgressPerfilCard totalApproved={totalApproved} totalSubjects={totalSubjects} />
+                    <ProgressPerfilCard career={career} totalApproved={totalApproved} totalSubjects={totalSubjects} />
+                    <ProgressPerfilCard career={career} totalApproved={totalApproved} totalSubjects={totalSubjects} />
+                    <ProgressPerfilCard career={career} totalApproved={totalApproved} totalSubjects={totalSubjects} />
                 </div>
                 <div className='my-10 items-center grid grid-cols-2 gap-10'>
                     <div className='bg-[#111111] rounded-xl p-5'>

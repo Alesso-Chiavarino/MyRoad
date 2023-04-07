@@ -1,7 +1,7 @@
 import { useUser } from "@/context/UserContext";
 import { useEffect, useState } from "react";
 
-const ProgressPerfilCard = ({ totalSubjects, totalApproved }) => {
+const ProgressPerfilCard = ({ totalSubjects, totalApproved, career }) => {
 
     const { user, userInfo } = useUser()
 
@@ -25,9 +25,7 @@ const ProgressPerfilCard = ({ totalSubjects, totalApproved }) => {
                     </div>
                     <div className="flex flex-col justify-center ml-2">
                         <span className="text-white font-semibold">{userInfo.name}</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-300">
-                            Informatic Engineering
-                        </span>
+                        <span className="text-sm text-gray-500 dark:text-gray-300">{career[0]?.name}</span>
                     </div>
                 </div>
                 <div className="flex items-center mt-3 justify-between my-2">
