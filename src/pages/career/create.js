@@ -5,6 +5,9 @@ import CareerForm from "@/components/CareerForm";
 import SemestersFormList from "@/components/SemestersFormList";
 import InputsSubjectList from "@/components/InputsSubjectList";
 import careerSubjects from "@/data/subjects";
+import { renderToast } from '@/utils/toast'
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const create = () => {
     const [career, setCareer] = useState({
@@ -44,7 +47,6 @@ const create = () => {
 
     const handleSubject = async (e) => {
         if (e.target.checked) {
-            console.log(e.target.value)
             setSubjects([
                 ...subjects,
                 {
@@ -99,6 +101,9 @@ const create = () => {
         } catch (err) {
             console.log(err);
         }
+        finally {
+            renderToast('Career created successfully')
+        }
     };
 
     useEffect(() => {
@@ -131,7 +136,7 @@ const create = () => {
             ...semesterListStore,
             {
                 number: semester.number,
-                subjects: subjects
+                subjects: subjectsList
             }
         ])
 
@@ -181,6 +186,7 @@ const create = () => {
             <section className="container mx-auto flex justify-center mt-20 gap-20">
                 <CareerForm handleSubmit={handleSubmit} handleCareer={handleCareer} handleCareersSubjectsForm={handleCareersSubjectsForm} subjectsListRender={subjectsListRender} handleSemester={handleSemester} semester={semester} />
                 <SemestersFormList semesterListStore={semesterListStore} deleteSemester={deleteSemester} />
+                <ToastContainer />
             </section>
         </Layout>
     );

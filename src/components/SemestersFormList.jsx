@@ -19,7 +19,7 @@ const SemestersFormList = ({ semesterListStore, deleteSemester }) => {
                                 <ul className="grid grid-cols-3 gap-5 py-3 px-5">
                                     {semester.subjects.map((subject, index) => {
                                         return (
-                                            <li key={index} className='bg-[#252525] rounded-md text-center text-[#D6DEE7]'>{subject.name}</li>
+                                            <li key={index} className='bg-[#252525] rounded-md text-center text-[#D6DEE7]'>{subject.code}</li>
                                         )
                                     })}
                                 </ul>

@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { useCareer } from '@/context/CareerContext'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Career = () => {
 
@@ -23,6 +25,7 @@ const Career = () => {
           <button className='border-[1px] border-gray-300 rounded-md px-4 py-2 text-gray-300 text-sm w-fit font-bold hover:bg-white hover:border-transparent hover:text-black' onClick={deleteCareer}>Delete your career</button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

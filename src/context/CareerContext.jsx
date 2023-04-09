@@ -1,6 +1,7 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { useUser } from './UserContext'
 import axios from 'axios'
+import { renderToast } from '@/utils/toast'
 
 const CareerContext = createContext()
 
@@ -30,8 +31,16 @@ const CareerProvider = ({ children }) => {
     }, [isLogged])
 
     const deleteCareer = async () => {
-        const res = await axios.delete(`http://localhost:3000/api/career/delete?id=${career[0]._id}`)
-        console.log(res)
+        try {
+            const res = await axios.delete(`http://localhost:3000/api/career/delete?id=${career[0]._id}`)
+            console.log(res)
+        }
+        catch (err) {
+            console.log(err)
+        }
+        finally {
+            renderToast('Career deleted successfully')
+        }
     }
 
     return (

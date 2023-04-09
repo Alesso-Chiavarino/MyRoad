@@ -25,7 +25,8 @@ const careerSchema = new Schema({
                 {
                     name: {
                         type: String,
-                        required: true
+                        required: true,
+                        trim: true
                     },
                     duration: {
                         type: Number,
@@ -33,6 +34,13 @@ const careerSchema = new Schema({
                     },
                     approved: {
                         type: Boolean,
+                    },
+                    condition: {
+                        type: String,
+                    },
+                    code: {
+                        type: String,
+                        trim: true
                     },
                     califications: [
                         {

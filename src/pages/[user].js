@@ -3,6 +3,7 @@ import Layout from '@/components/Layout'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import CareerProgressBar from '@/components/CareerProgressBar'
+import { BsCircleFill } from 'react-icons/bs'
 
 const User = () => {
 
@@ -53,13 +54,46 @@ const User = () => {
         }
     }, [career])
 
-    // console.log(career)
+    const renderConditions = (sub) => {
+        const conditionHashMap = {
+            deslocked: <span className='flex items-center gap-2 text-[14px]'><BsCircleFill className='text-orange-500' />Can coursing</span>,
+            locked: <span className='flex items-center gap-2 text-[14px]'><BsCircleFill className='text-gray-500' />Cannnot coursing</span>,
+            approved: <span className='flex items-center gap-2 text-[14px]'><BsCircleFill className='text-green-500' />Approved</span>,
+            notApproved: <span className='flex items-center gap-2 text-[14px]'><BsCircleFill className='text-red-500' />Disapproved</span>,
+            regular: <span className='flex items-center gap-2 text-[14px]'><BsCircleFill className='text-yellow-500' />Regular</span>,
+        }
+        return conditionHashMap[sub.condition]
+    }
+
+    const renderSubjects = () => {
+        if (career?.semesters?.length > 0) {
+            return career.semesters[0].subjects.map((sub, i) => {
+                // if (i <= 3) { //render 4 articles
+                return (
+                    <li key={i} className='border-[1px] border-[#B8BFC6]/70 rounded-md px-4 py-3'>
+                        <article className='flex flex-col gap-3'>
+                            <div className='flex justify-between items-center'>
+                                <h3 className='font-bold text-[#7148FC]'>{sub?.name}</h3>
+                                <span className='text-[12px] border-[1px] border-[#B8BFC6]/70 rounded-full px-2 py-[2px]'>{`${career.semesters[0].number}º semester`}</span>
+                            </div>
+                            <span>
+                                {renderConditions(sub)}
+                            </span>
+                        </article>
+                    </li >
+                )
+                // }
+
+            })
+        }
+    }
+
 
     return (
         <Layout title={user.username}>
             <section className='text-gray-300 container mx-auto flex gap-32 my-10'>
                 <div className='w-2/5 flex flex-col items-center gap-2'>
-                    <div className='h-64 w-64 border-[1px] border-[#B8BFC6] rounded-full overflow-hidden'>
+                    <div className='h-64 w-64 border-[1px] border-[#B8BFC6]/70 rounded-full overflow-hidden'>
                         <img className='object-cover w-full h-full' src={user?.avatar_url?.url} alt='avatar' />
                     </div>
                     <div className='flex flex-col items-center'>
@@ -69,13 +103,21 @@ const User = () => {
                     <p className='text-sm'>{user?.bio}</p>
 
                 </div>
-                <div className='w-full'>
-                    <h3 className='font-bold mb-2'>Current career</h3>
-                    <div className='flex flex-col gap-2 border-[1px] border-[#B8BFC6] rounded-md p-5'>
-                        <h3 className='font-bold text-2xl'>{career?.name}</h3>
-                        <hr />
-                        <p>{career?.description}</p>
+                <div className='w-full flex flex-col gap-5'>
+                    <div>
+                        <h3 className='font-bold mb-2'>Current career</h3>
+                        <div className='flex flex-col gap-2 border-[1px] border-[#B8BFC6]/70 rounded-md p-5'>
+                            <h3 className='font-bold text-2xl'>{career?.name}</h3>
+                            <hr />
+                            <p>{career?.description}</p>
                             <CareerProgressBar totalApproved={totalApproved} totalSubjects={totalSubjects} />
+                        </div>
+                    </div>
+                    <div>
+                        <h3 className='font-bold mb-2'>Current subjects</h3>
+                        <ul className='grid grid-cols-2 gap-5'>
+                            {renderSubjects()}
+                        </ul>
                     </div>
                 </div>
             </section>
