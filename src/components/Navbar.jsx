@@ -58,6 +58,7 @@ const Navbar = () => {
             <nav className='flex items-center py-3 justify-between mx-auto container'>
                 <div className='flex items-center gap-5'>
                     <Brand />
+                    <Search />
                     <ul className='flex gap-3 font-bold text-[#B8BFC6]'>
                         <Link href={'/'} className={`flex gap-1 items-center cursor-pointer px-3 py-1 transition-all duration-200 rounded-md ${navigate.asPath === '/' ? 'bg-[#B8BFC6] bg-opacity-10 text-white' : 'hover:bg-[#B8BFC6] hover:bg-opacity-10 hover:text-white'}`}>
                             <AiFillHome />
@@ -72,7 +73,6 @@ const Navbar = () => {
                             <li>Careers</li>
                         </Link>
                     </ul>
-                    <Search />
                 </div>
                 {handleAuthButtons()}
 
