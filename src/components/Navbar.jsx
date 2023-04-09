@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import Brand from './Brand'
 import { useUser } from '../context/UserContext'
 import AccountDropdown from './AccountDropdown'
+import Search from './Search'
 
 const Navbar = () => {
 
@@ -71,6 +72,7 @@ const Navbar = () => {
                             <li>Careers</li>
                         </Link>
                     </ul>
+                    <Search />
                 </div>
                 {handleAuthButtons()}
 
