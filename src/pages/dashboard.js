@@ -86,6 +86,114 @@ const dashboard = () => {
         setDataBump(bumpDataa);
     }, [career, semester]);
 
+    const dataBump2 = [
+        {
+            "id": "AM-1",
+            "data": [
+                {
+                    "x": '1º PARTIAL',
+                    "y": 2
+                },
+                {
+                    "x": '2º PARTIAL',
+                    "y": 4
+                },
+                {
+                    "x": '3º PARTIAL',
+                    "y": 8
+                },
+                {
+                    "x": 'FINAL',
+                    "y": 10
+                },
+            ]
+        },
+        {
+            "id": "LAB-1",
+            "data": [
+                {
+                    "x": '1º PARTIAL',
+                    "y": 8
+                },
+                {
+                    "x": '2º PARTIAL',
+                    "y": 1
+                },
+                {
+                    "x": '3º PARTIAL',
+                    "y": 10
+                },
+                {
+                    "x": 'FINAL',
+                    "y": 10
+                },
+            ]
+        },
+        {
+            "id": "A-1",
+            "data": [
+                {
+                    "x": '1º PARTIAL',
+                    "y": 9
+                },
+                {
+                    "x": '2º PARTIAL',
+                    "y": 10
+                },
+                {
+                    "x": '3º PARTIAL',
+                    "y": 9
+                },
+                {
+                    "x": 'FINAL',
+                    "y": 5
+                },
+            ]
+        },
+        {
+            "id": "IT-1",
+            "data": [
+                {
+                    "x": '1º PARTIAL',
+                    "y": 10
+                },
+                {
+                    "x": '2º PARTIAL',
+                    "y": 7
+                },
+                {
+                    "x": '3º PARTIAL',
+                    "y": 1
+                },
+                {
+                    "x": 'FINAL',
+                    "y": 7
+                },
+            ]
+        },
+        {
+            "id": "TD",
+            "data": [
+                {
+                    "x": '1º PARTIAL',
+                    "y": 2
+                },
+                {
+                    "x": '2º PARTIAL',
+                    "y": 8
+                },
+                {
+                    "x": '3º PARTIAL',
+                    "y": 10
+                },
+                {
+                    "x": 'FINAL',
+                    "y": 6
+                },
+            ]
+        },
+    ]
+
     return (
         <Layout title='Dashboard'>
             <div className='container mx-auto pb-10'>
@@ -114,7 +222,7 @@ const dashboard = () => {
                     </div>
                     <div className='bg-[#111111] rounded-xl p-5'>
                         <span className='text-gray-50 font-semibold'>Recent Califications</span>
-                        <Bump dataBump={dataBump} />
+                        <Bump dataBump={dataBump2} />
                     </div>
                 </div>
                 <div className='bg-[#111111] rounded-xl'>
@@ -137,110 +245,3 @@ export default dashboard
 
 
 
-// const dataBump2 = [
-//         {
-//             "id": "AM-1",
-//             "data": [
-//                 {
-//                     "x": '1º PARTIAL',
-//                     "y": 2
-//                 },
-//                 {
-//                     "x": '2º PARTIAL',
-//                     "y": 4
-//                 },
-//                 {
-//                     "x": '3º PARTIAL',
-//                     "y": 8
-//                 },
-//                 {
-//                     "x": 'FINAL',
-//                     "y": 10
-//                 },
-//             ]
-//         },
-//         {
-//             "id": "LAB-1",
-//             "data": [
-//                 {
-//                     "x": '1º PARTIAL',
-//                     "y": 8
-//                 },
-//                 {
-//                     "x": '2º PARTIAL',
-//                     "y": 1
-//                 },
-//                 {
-//                     "x": '3º PARTIAL',
-//                     "y": 10
-//                 },
-//                 {
-//                     "x": 'FINAL',
-//                     "y": 10
-//                 },
-//             ]
-//         },
-//         {
-//             "id": "A-1",
-//             "data": [
-//                 {
-//                     "x": '1º PARTIAL',
-//                     "y": 9
-//                 },
-//                 {
-//                     "x": '2º PARTIAL',
-//                     "y": 10
-//                 },
-//                 {
-//                     "x": '3º PARTIAL',
-//                     "y": 9
-//                 },
-//                 {
-//                     "x": 'FINAL',
-//                     "y": 5
-//                 },
-//             ]
-//         },
-//         {
-//             "id": "IT-1",
-//             "data": [
-//                 {
-//                     "x": '1º PARTIAL',
-//                     "y": 10
-//                 },
-//                 {
-//                     "x": '2º PARTIAL',
-//                     "y": 7
-//                 },
-//                 {
-//                     "x": '3º PARTIAL',
-//                     "y": 1
-//                 },
-//                 {
-//                     "x": 'FINAL',
-//                     "y": 7
-//                 },
-//             ]
-//         },
-//         {
-//             "id": "TD",
-//             "data": [
-//                 {
-//                     "x": '1º PARTIAL',
-//                     "y": 2
-//                 },
-//                 {
-//                     "x": '2º PARTIAL',
-//                     "y": 8
-//                 },
-//                 {
-//                     "x": '3º PARTIAL',
-//                     "y": 10
-//                 },
-//                 {
-//                     "x": 'FINAL',
-//                     "y": 6
-//                 },
-//             ]
-//         },
-//     ]

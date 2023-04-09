@@ -11,6 +11,7 @@ const register = () => {
     const [credentials, setCredentials] = useState({
         email: '',
         password: '',
+        username: '',
         name: ''
     })
 

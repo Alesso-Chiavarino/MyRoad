@@ -13,6 +13,10 @@ const RegisterForm = ({ handleChange, handleSubmit, showPassword, inputType }) =
                         <input type="text" name='name' placeholder='Type your name' onChange={handleChange} className='bg-[#171717] border-[1px] border-[#B8BFC6] p-2 rounded-md w-full outline-none focus:border-[#7148FC] transition-all duration-300 placeholder:font-medium' />
                     </div>
                     <div className='flex flex-col text-[#D6DEE7] gap-2'>
+                        <label htmlFor="username" className=' font-bold'>Username</label>
+                        <input type="text" name='username' placeholder='Type your username' onChange={handleChange} className='bg-[#171717] border-[1px] border-[#B8BFC6] p-2 rounded-md w-full outline-none focus:border-[#7148FC] transition-all duration-300 placeholder:font-medium' />
+                    </div>
+                    <div className='flex flex-col text-[#D6DEE7] gap-2'>
                         <label htmlFor="email" className=' font-bold'>Email</label>
                         <input type="text" name='email' placeholder='Type your email' onChange={handleChange} className='bg-[#171717] border-[1px] border-[#B8BFC6] p-2 rounded-md w-full outline-none focus:border-[#7148FC] transition-all duration-300 placeholder:font-medium' />
                     </div>
