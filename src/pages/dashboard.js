@@ -4,7 +4,6 @@ import CareerTable from '@/components/CareerTable'
 import Layout from '@/components/Layout'
 import Pie from '@/components/Pie'
 import ProgressPerfilCard from '@/components/ProgressPerfilCard'
-import AvatarForm from '@/components/avatarForm'
 import { useCareer } from '@/context/CareerContext'
 import { useEffect, useState } from 'react'
 
@@ -228,7 +227,7 @@ const dashboard = () => {
                 <div className='bg-[#111111] rounded-xl'>
                     <CareerTable semester={semester} />
                 </div>
-                {/* <CalificationForm /> */}
+                <CalificationForm />
             </div>
         </Layout>
     )

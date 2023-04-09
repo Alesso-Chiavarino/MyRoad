@@ -1,16 +1,9 @@
 import { useUser } from "@/context/UserContext";
-import { useEffect, useState } from "react";
+import CareerProgressBar from "./CareerProgressBar";
 
 const ProgressPerfilCard = ({ totalSubjects, totalApproved, career }) => {
 
-    const { user, userInfo } = useUser()
-
-    const [progressBarWidth, setProgressBarWidth] = useState(0);
-
-    useEffect(() => {
-        const progressPercent = ((totalApproved / totalSubjects)) * 100;
-        setProgressBarWidth(progressPercent);
-    }, [totalApproved, totalSubjects]);
+    const { userInfo } = useUser()
 
     return (
         <div className="relative w-full p-4 overflow-hidden shadow-lg rounded-xl bg-[#111111]">
@@ -28,14 +21,7 @@ const ProgressPerfilCard = ({ totalSubjects, totalApproved, career }) => {
                         <span className="text-sm text-gray-500 dark:text-gray-300">{career[0]?.name}</span>
                     </div>
                 </div>
-                <div className="flex items-center mt-3 justify-between my-2">
-                    <p className="text-sm text-gray-300">{`${totalApproved}/${totalSubjects} approved subjects`}</p>
-                </div>
-                <div className="w-full h-2 bg-[#7148FC]/30 rounded-full">
-                    <div
-                        style={{ width: `${progressBarWidth}%` }} className={`h-full text-xs text-center text-white bg-[#7148FC] rounded-full`}
-                    ></div>
-                </div>
+                <CareerProgressBar totalSubjects={totalSubjects} totalApproved={totalApproved} />
             </div>
         </div>
     );
