@@ -1,5 +1,5 @@
 import { connect, connection } from "mongoose";
-import { MONGODB_URI } from "../config";
+import { MONGODB_ATLAS_URI, MONGODB_LOCAL_URI } from "../config";
 
 let isConnnected = 0
 
@@ -9,7 +9,8 @@ export const dbConnect = async () => {
         return
     }
 
-    const db = await connect(MONGODB_URI)
+    // const db = await connect(MONGODB_ATLAS_URI)
+    const db = await connect(MONGODB_LOCAL_URI)
     isConnnected = db.connections[0].readyState
     console.log(db?.connection?.db?.databaseName)
 }

@@ -1,4 +1,6 @@
-export const MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI || 'mongodb+srv://alesso-chiavarino:TheAlexOMG14@cluster0.md2ra5z.mongodb.net/myRoadDB?retryWrites=true&w=majority';
+export const MONGODB_ATLAS_URI = process.env.NEXT_PUBLIC_MONGODB_ATLAS_URI || 'mongodb+srv://alesso-chiavarino:TheAlexOMG14@cluster0.md2ra5z.mongodb.net/myRoadDB?retryWrites=true&w=majority';
+
+export const MONGODB_LOCAL_URI = process.env.NEXT_PUBLIC_MONGODB_LOCAL_URI || 'mongodb://localhost:8080/?readPreference=primary&ssl=false&directConnection=true'
 
 export const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || 'dotaebdx8';
 
